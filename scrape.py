@@ -42,7 +42,7 @@ async def crawl_site_to_markdown(base_url, output_folder="scraped_docs"):
     run_config = CrawlerRunConfig(
         word_count_threshold=10,
         exclude_external_links=True,
-        css_selector="#main-content, main, .wiki-content",
+        css_selector=".confluence-content, #content, .page-content, [data-testid='content.views.document.base']",
         magic=True,
     )
     
@@ -69,9 +69,19 @@ async def crawl_site_to_markdown(base_url, output_folder="scraped_docs"):
 
             # 2. Extract Title and Links
             title = "MAST Document"
-            # Title extraction - Crawl4AI sometimes puts title in result.metadata
+            # Title extraction - try multiple sources for Confluence
             if hasattr(result, "metadata") and result.metadata:
                 title = result.metadata.get("title", title)
+            if title == "MAST Document" and hasattr(result, "html") and result.html:
+                soup = BeautifulSoup(result.html, 'html.parser')
+                # Confluence title sources
+                title_elem = (
+                    soup.find("h1", class_="page-title") or
+                    soup.find("h1") or
+                    soup.find("title")
+                )
+                if title_elem:
+                    title = title_elem.get_text(strip=True)
                 
             # Enqueue internal links from both crawl4ai and raw HTML
             internal_links = result.links.get("internal", []) if isinstance(result.links, dict) else []
@@ -90,11 +100,39 @@ async def crawl_site_to_markdown(base_url, output_folder="scraped_docs"):
                 if full_url.startswith(base_domain) and full_url not in visited and full_url not in queue and "$" not in full_url:
                     queue.append(full_url)
                     
-            # 3. Get clean Markdown
+            # 3. Get clean Markdown, fallback to Confluence content extraction
             md_text = result.markdown
             
+            # If markdown is empty, extract from HTML (Confluence-specific)
             if not md_text or not md_text.strip():
-                logger.warning(f"No markdown content found for {current_url}")
+                if hasattr(result, "html") and result.html:
+                    soup = BeautifulSoup(result.html, 'html.parser')
+                    
+                    # Try to find Confluence content area
+                    content_div = (
+                        soup.find(class_="confluence-content") or
+                        soup.find(id="content") or
+                        soup.find(class_="page-content") or
+                        soup.find("article") or
+                        soup.find("main")
+                    )
+                    
+                    if not content_div:
+                        content_div = soup
+                    
+                    # Remove unwanted elements common in Confluence
+                    for element in content_div.find_all(["script", "style", "nav", "footer", ".sidebar", "aside"]):
+                        element.decompose()
+                    
+                    # Remove Confluence UI elements (breadcrumbs, buttons, etc)
+                    for element in content_div.find_all(class_=re.compile(r"(breadcrumb|sidebar|navigation|toc|action|meta|button-group|aui-button)")):
+                        element.decompose()
+                    
+                    # Get text content
+                    md_text = content_div.get_text(separator='\n', strip=True)
+                
+            if not md_text or not md_text.strip():
+                logger.warning(f"No content found for {current_url}")
                 continue
 
             # 4. Chunk with LangChain
@@ -121,6 +159,7 @@ async def crawl_site_to_markdown(base_url, output_folder="scraped_docs"):
                 f.write(f"title: \"{title}\"\n")
                 f.write(f"source_url: \"{current_url}\"\n")
                 f.write(f"date_accessed: \"{datetime.now().isoformat()}\"\n")
+                f.write(f"content_length: {len(md_text)}\n")
                 f.write("---\n\n")
 
                 if md_header_splits:
@@ -138,9 +177,10 @@ async def crawl_site_to_markdown(base_url, output_folder="scraped_docs"):
                 "url": current_url,
                 "title": title,
                 "filepath": filepath,
-                "chunks": len(md_header_splits)
+                "chunks": len(md_header_splits),
+                "content_length": len(md_text)
             })
-            logger.info(f"Saved chunked data to {filepath}")
+            logger.info(f"Saved {len(md_text)} chars to {filepath}")
 
     index_path = os.path.join(output_folder, "index.csv")
     df = pd.DataFrame(index_rows)
