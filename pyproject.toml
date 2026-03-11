@@ -1,7 +1,14 @@
 [project]
 name = "hitchhikers-guide-to-the-archive"
 version = "0.1.0"
-description = "Add your description here"
+description = "RAG AI pipeline for the MAST Archive"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "crawl4ai>=0.8.0",
+    "pandas>=3.0.1",
+]
+
+[[tool.uv.index]]
+url = "https://pypi.org/simple"
+default = true
