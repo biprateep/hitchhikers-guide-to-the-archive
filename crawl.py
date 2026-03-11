@@ -5,7 +5,7 @@ import pandas as pd
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
 from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
 
-async def crawl_site_to_markdown(base_url, output_folder="mast_docs"):
+async def crawl_site_to_markdown(base_url, allowed_prefix="https://outerspace.stsci.edu", output_folder="mast_docs"):
     # Create output directory
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -20,7 +20,7 @@ async def crawl_site_to_markdown(base_url, output_folder="mast_docs"):
     bfs_strategy = BFSDeepCrawlStrategy(
         max_depth=2, 
         include_external=False, 
-        max_pages=100
+        max_pages=50
     )
 
     # 3. Configure Run Settings
@@ -34,7 +34,7 @@ async def crawl_site_to_markdown(base_url, output_folder="mast_docs"):
         results = await crawler.arun(url=base_url, config=run_cfg)
 
         for i, result in enumerate(results):
-            if result.success and result.markdown:
+            if result.success and result.markdown and result.url.startswith(allowed_prefix):
                 # Create a safe filename from the URL
                 filename = re.sub(r'[^\w\-_\. ]', '_', result.url.replace(base_url, ""))
                 if not filename or filename == "_":
@@ -74,4 +74,5 @@ async def crawl_site_to_markdown(base_url, output_folder="mast_docs"):
 
 if __name__ == "__main__":
     target_url = "https://outerspace.stsci.edu/spaces/MASTDOCS/overview " # Replace with your target site
-    asyncio.run(crawl_site_to_markdown(target_url))
+    allowed_prefix = "https://outerspace.stsci.edu"
+    asyncio.run(crawl_site_to_markdown(target_url, allowed_prefix))
