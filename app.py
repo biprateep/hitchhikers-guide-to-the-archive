@@ -1,4 +1,5 @@
 import os
+import re
 import chromadb
 from flask import Flask, render_template, request, jsonify
 from llama_index.core import VectorStoreIndex, StorageContext, Settings, PromptTemplate
@@ -6,6 +7,8 @@ from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.llms.gemini import Gemini
 from llama_index.embeddings.gemini import GeminiEmbedding
 from llama_index.core.query_engine import CitationQueryEngine
+from llama_index.core.query_engine import RetrieverQueryEngine
+from llama_index.core import get_response_synthesizer
 
 app = Flask(__name__)
 
@@ -14,7 +17,8 @@ if "GOOGLE_API_KEY" not in os.environ:
     print("Warning: GOOGLE_API_KEY environment variable is missing. This will crash LLM.")
 
 # Configure LLM and Embedding locally
-Settings.llm = Gemini(model_name="models/gemma-3-27b-it", temperature=0.7)
+# Settings.llm = Gemini(model_name="models/gemma-3-27b-it", temperature=0.7)
+Settings.llm = Gemini(model_name="models/gemini-2.5-flash")
 Settings.embed_model = GeminiEmbedding(model_name="models/gemini-embedding-001")
 
 # Load Vector Store
@@ -30,24 +34,42 @@ index = VectorStoreIndex.from_vector_store(
 
 # Define Custom Prompt
 qa_prompt_str = (
+    "You are an AI assistant specialized in MAST Data documentation.\n"
     "Context information is below.\n"
     "---------------------\n"
     "{context_str}\n"
     "---------------------\n"
-    "Given the context information and no prior knowledge, answer the query.\n"
-    "You are an AI assistant specialized in MAST Data documentation.\n"
-    "MANDATORY: Answer the query using ONLY the provided context. If the answer is not contained in the context, say 'I cannot answer this based on the provided MAST documentation.'\n"
+    "Using the context information above and no prior knowledge, answer the query.\n"
+    "MANDATORY: Answer the query using ONLY the provided context.\n"
+    "If the answer is not contained in the context, say 'I cannot answer this based on the provided MAST documentation.'\n"
+    "Otherwise, use the context to answer the query.\n"
     "Query: {query_str}\n"
     "Answer: "
 )
 qa_prompt = PromptTemplate(qa_prompt_str)
 
 
-# Create Query Engine (no reranker - SentenceTransformerRerank has Mac compatibility issues)
-query_engine = CitationQueryEngine.from_args(
-    index,
-    similarity_top_k=5,
+# Create retriever from index
+retriever = index.as_retriever(similarity_top_k=15)
+
+# Build response synthesizer with your custom prompt
+response_synthesizer = get_response_synthesizer(
+    response_mode="compact",  # or "tree_summarize" for longer docs
+    text_qa_template=qa_prompt,
 )
+
+# Assemble the query engine
+query_engine = RetrieverQueryEngine(
+    retriever=retriever,
+    response_synthesizer=response_synthesizer,
+)
+
+
+# Create Query Engine (no reranker - SentenceTransformerRerank has Mac compatibility issues)
+# query_engine = CitationQueryEngine.from_args(
+#     index,
+#     similarity_top_k=5,
+# )
 
 @app.route("/")
 def index_route():
