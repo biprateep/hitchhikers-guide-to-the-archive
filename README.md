@@ -66,14 +66,6 @@ The pipeline has three stages: **Scrape → Ingest → Serve**.
 
 ### 1. Scrape the MAST documentation
 
-Choose one of the two scrapers:
-
-- **`crawl.py`** – BFS deep-crawl (simpler, uses `crawl4ai` deep-crawl strategies):
-
-  ```bash
-  uv run python crawl.py
-  ```
-
 - **`scrape.py`** – Custom crawler with markdown chunking and metadata (recommended):
 
   ```bash
