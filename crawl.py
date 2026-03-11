@@ -1,6 +1,7 @@
 import asyncio
 import os
 import re
+import pandas as pd
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
 from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
 
@@ -8,6 +9,8 @@ async def crawl_site_to_markdown(base_url, output_folder="mast_docs"):
     # Create output directory
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
+
+    index_rows = []
 
     # 1. Configure Browser
     browser_cfg = BrowserConfig(headless=True, verbose=True)
@@ -17,7 +20,7 @@ async def crawl_site_to_markdown(base_url, output_folder="mast_docs"):
     bfs_strategy = BFSDeepCrawlStrategy(
         max_depth=2, 
         include_external=False, 
-        max_pages=100
+        max_pages=50
     )
 
     # 3. Configure Run Settings
@@ -36,13 +39,38 @@ async def crawl_site_to_markdown(base_url, output_folder="mast_docs"):
                 filename = re.sub(r'[^\w\-_\. ]', '_', result.url.replace(base_url, ""))
                 if not filename or filename == "_":
                     filename = "index"
-                
-                filepath = os.path.join(output_folder, f"{filename}.md")
-                
+
+                outgoing_filename = f"{filename}.md"
+                filepath = os.path.join(output_folder, outgoing_filename)
+
+                # Extract title from metadata or first # heading in markdown
+                title = ""
+                if result.metadata and result.metadata.get("title"):
+                    title = result.metadata.get("title", "")
+                else:
+                    md_text = result.markdown.raw_markdown if hasattr(result.markdown, "raw_markdown") else result.markdown
+                    if md_text:
+                        first_line = md_text.strip().split("\n")[0]
+                        if first_line.startswith("#"):
+                            title = first_line.lstrip("#").strip()
+
+                index_rows.append({
+                    "url": result.url,
+                    "title": title,
+                    "filename": outgoing_filename,
+                })
+
                 with open(filepath, "w", encoding="utf-8") as f:
-                    f.write(result.markdown)
-                
+                    md_content = result.markdown.raw_markdown if hasattr(result.markdown, "raw_markdown") else result.markdown
+                    f.write(md_content)
+
                 print(f"Saved: {result.url} -> {filepath}")
+
+        # Write index.csv to working directory
+        index_path = os.path.join(os.getcwd(), "index.csv")
+        df = pd.DataFrame(index_rows)
+        df.to_csv(index_path, index=False)
+        print(f"Index written: {index_path}")
 
 if __name__ == "__main__":
     target_url = "https://outerspace.stsci.edu/spaces/MASTDOCS/overview " # Replace with your target site
