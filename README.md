@@ -22,7 +22,6 @@ The project depends on the following third-party Python packages:
 | `llama-index-vector-stores-chroma` | `ingest.py`, `app.py` | ChromaDB integration for LlamaIndex |
 | `llama-index-embeddings-gemini` | `ingest.py`, `app.py` | Google Gemini embedding models |
 | `llama-index-llms-gemini` | `app.py` | Google Gemini LLM for answer generation |
-| `llama-index-postprocessor-sbert-rerank` | `app.py` | Cross-encoder reranking for improved retrieval |
 | `flask` | `app.py` | Web server for the chatbot UI |
 | `tenacity` | `ingest.py` | Retry with exponential backoff for rate-limited API calls |
 | `google-api-core` | `ingest.py` | Google API exception types (`ResourceExhausted`) |
@@ -59,7 +58,7 @@ export GOOGLE_API_KEY="your-api-key-here"
    This reads `pyproject.toml` and `uv.lock` to install all pinned dependencies into a virtual environment.
 
    > If you prefer pip, install the packages listed in the table above manually, e.g.  
-   > `pip install crawl4ai pandas beautifulsoup4 langchain-text-splitters chromadb llama-index-core llama-index-vector-stores-chroma llama-index-embeddings-gemini llama-index-llms-gemini llama-index-postprocessor-sbert-rerank flask tenacity google-api-core`
+   > `pip install crawl4ai pandas beautifulsoup4 langchain-text-splitters chromadb llama-index-core llama-index-vector-stores-chroma llama-index-embeddings-gemini llama-index-llms-gemini flask tenacity google-api-core`
 
 ## Usage
 

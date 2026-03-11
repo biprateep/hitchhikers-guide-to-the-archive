@@ -5,7 +5,7 @@ from llama_index.core import VectorStoreIndex, StorageContext, Settings, PromptT
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.llms.gemini import Gemini
 from llama_index.embeddings.gemini import GeminiEmbedding
-from llama_index.postprocessor.sbert_rerank import SentenceTransformerRerank
+from llama_index.core.query_engine import CitationQueryEngine
 
 app = Flask(__name__)
 
@@ -42,20 +42,11 @@ qa_prompt_str = (
 )
 qa_prompt = PromptTemplate(qa_prompt_str)
 
-# Define Cross-Encoder Reranker
-print("Loading Cross-Encoder Reranker...")
-reranker = SentenceTransformerRerank(
-    model="cross-encoder/ms-marco-MiniLM-L-2-v2", 
-    top_n=3
-)
 
-from llama_index.core.query_engine import CitationQueryEngine
-
-# Create Query Engine
+# Create Query Engine (no reranker - SentenceTransformerRerank has Mac compatibility issues)
 query_engine = CitationQueryEngine.from_args(
     index,
-    similarity_top_k=15,
-    node_postprocessors=[reranker],
+    similarity_top_k=5,
 )
 
 @app.route("/")
