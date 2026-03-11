@@ -33,6 +33,12 @@
     * [Document Management](https://outerspace.stsci.edu/documentManagement/onboarding.action "Document Management")
 
 
+  * Sites
+[ STScI Outerspace  ](https://outerspace.stsci.edu/dashboard.action)
+[ MAST  ](https://outerspace.stsci.edu/site/mast)
+[ Roman Community Working Groups  ](https://outerspace.stsci.edu/site/ruf)
+
+
 [ ![STScI Outerspace](https://outerspace.stsci.edu/download/attachments/327682/atl.site.logo?version=1&modificationDate=1499352523875&api=v2) ](https://outerspace.stsci.edu/homepage.action)
 Outerspace
   * [ Site Home  ](https://outerspace.stsci.edu/dashboard.action "Dashboard \( Type 'n' \)")

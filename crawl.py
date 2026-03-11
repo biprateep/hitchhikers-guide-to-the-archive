@@ -20,7 +20,7 @@ async def crawl_site_to_markdown(base_url, allowed_prefix="https://outerspace.st
     bfs_strategy = BFSDeepCrawlStrategy(
         max_depth=2, 
         include_external=False, 
-        max_pages=50
+        max_pages=100
     )
 
     # 3. Configure Run Settings

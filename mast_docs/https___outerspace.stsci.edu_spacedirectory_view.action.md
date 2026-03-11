@@ -33,6 +33,8 @@
     * [Document Management](https://outerspace.stsci.edu/documentManagement/onboarding.action "Document Management")
 
 
+  * 
+
 [ ![STScI Outerspace](https://outerspace.stsci.edu/download/attachments/327682/atl.site.logo?version=1&modificationDate=1499352523875&api=v2) ](https://outerspace.stsci.edu/homepage.action)
 Outerspace
   * [ Site Home  ](https://outerspace.stsci.edu/dashboard.action "Dashboard \( Type 'n' \)")
@@ -50,9 +52,7 @@ false
 false
 true
 false
-  * [All](https://outerspace.stsci.edu/spacedirectory/view.action)
-
-
+Uncategorized spaces
 Space Telescope Science Institute  
 Copyright Policy: <http://www.stsci.edu/copyright>[![](https://outerspace.stsci.edu/images/icons/linkext7.gif)](http://www.stsci.edu/copyright)  
 Privacy Policy: <http://www.stsci.edu/privacy>[![](https://outerspace.stsci.edu/images/icons/linkext7.gif)](http://www.stsci.edu/privacy)

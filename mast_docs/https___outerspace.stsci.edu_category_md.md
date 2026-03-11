@@ -19,9 +19,27 @@
 
 
   * Search
+  * Activity stream
+
+
+  * [Spaces](https://outerspace.stsci.edu/spacedirectory/view.action "Spaces")
+  * [People](https://outerspace.stsci.edu/browsepeople.action "People")
+  * [Calendars](https://outerspace.stsci.edu/calendar/mycalendar.action "Calendars")
+  * [](https://outerspace.stsci.edu/category/md)
+    * [Forums](https://outerspace.stsci.edu/category/md "Forums")
+    * [Analytics Cockpit](https://outerspace.stsci.edu/plugins/servlet/bitvoodoo/global-analytics-reports "Analytics Cockpit")
+    * [Analytics](https://outerspace.stsci.edu/plugins/confanalytics/analytics.action "Analytics")
+    * [Document Management](https://outerspace.stsci.edu/documentManagement/onboarding.action?spaceKey=$helper.spaceKey "Document Management")
+    * [Document Management](https://outerspace.stsci.edu/documentManagement/onboarding.action "Document Management")
 
 
 [ ![MAST](https://outerspace.stsci.edu/download/attachments/327682/atl.site.logo?version=1&modificationDate=1499352523875&api=v2) ](https://outerspace.stsci.edu/site/mast)
+  * [User Guides](https://outerspace.stsci.edu/category/ug)
+  * [MAST Data](https://outerspace.stsci.edu/category/md)
+  * [Mission Manuals](https://outerspace.stsci.edu/category/mm)
+  * [Data Search](https://outerspace.stsci.edu/category/ltsf)
+
+
 Quick Search
 Hit enter to search
 The following error(s) occurred:
