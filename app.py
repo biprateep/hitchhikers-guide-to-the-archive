@@ -85,12 +85,17 @@ def chat():
 
     try:
         response = query_engine.query(user_message)
-        
+
+        # print(f"Response: {response}")
+        # print(f"Sources: {response.source_nodes}")
+
         # Extract source URLs from source nodes' metadata
         sources = set()
         for node in response.source_nodes:
+            # print(f"Node: {node}")
             metadata = node.metadata
             url = metadata.get("source_url")
+            print(f"URL: {url}")  # TODO: These urls are not correct, need to fix
             if url:
                 sources.add(url)
                 
