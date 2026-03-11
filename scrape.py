@@ -6,7 +6,6 @@ import logging
 import pandas as pd
 from urllib.parse import urlparse, urljoin, urldefrag
 from datetime import datetime
-from langchain_text_splitters import MarkdownHeaderTextSplitter
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 from bs4 import BeautifulSoup
 
@@ -19,13 +18,6 @@ async def crawl_site_to_markdown(base_url, output_folder="scraped_docs"):
 
     index_rows = []
     
-    headers_to_split_on = [
-        ("#", "Header 1"),
-        ("##", "Header 2"),
-        ("###", "Header 3"),
-    ]
-    markdown_splitter = MarkdownHeaderTextSplitter(headers_to_split_on=headers_to_split_on)
-
     logger.info(f"Starting crawl at {base_url} with max_pages=200")
 
     queue = [base_url]
@@ -87,9 +79,32 @@ async def crawl_site_to_markdown(base_url, output_folder="scraped_docs"):
                 full_url = urljoin(current_url, href)
                 full_url, _ = urldefrag(full_url)
                 
+
+                # Filter out junk URLs (e.g. login pages, history, raw data, attachment views)
+                junk_patterns = [
+                    r'login',
+                    r'signup',
+                    r'\?pageId=',
+                    r'\?focusedCommentId=',
+                    r'viewpage\.action\?',
+                    r'user\.action\?',
+                    r'history',
+                    r'attachment',
+                    r'export',
+                    r'edit',
+                    r'aboutconfluencepage\.action',
+                    r'configurerssfeed\.action',
+                    r'spacedirectory/',
+                    r'browsepeople\.action',
+                    r'collector/'
+                ]
+                if any(re.search(pattern, full_url, re.IGNORECASE) for pattern in junk_patterns):
+                    continue
+
                 if full_url.startswith(base_domain) and full_url not in visited and full_url not in queue and "$" not in full_url:
                     queue.append(full_url)
                     
+
             # 3. Get clean Markdown
             md_text = result.markdown
             
@@ -97,9 +112,10 @@ async def crawl_site_to_markdown(base_url, output_folder="scraped_docs"):
                 logger.warning(f"No markdown content found for {current_url}")
                 continue
 
-            # 4. Chunk with LangChain
-            md_header_splits = markdown_splitter.split_text(md_text)
+            # Clean up junk characters (e.g. excessive newlines, bizarre symbols if any)
+            md_text = re.sub(r'\n{3,}', '\n\n', md_text)
 
+            # We are not chunking here anymore, saving entire cleaned page
             # 5. Save to Hierarchical Storage
             parsed_url = urlparse(current_url)
             path_parts = parsed_url.path.strip("/").split("/")
@@ -116,31 +132,23 @@ async def crawl_site_to_markdown(base_url, output_folder="scraped_docs"):
             os.makedirs(dir_path, exist_ok=True)
             filepath = os.path.join(dir_path, filename)
 
+
             with open(filepath, "w", encoding="utf-8") as f:
                 f.write("---\n")
                 f.write(f"title: \"{title}\"\n")
                 f.write(f"source_url: \"{current_url}\"\n")
                 f.write(f"date_accessed: \"{datetime.now().isoformat()}\"\n")
                 f.write("---\n\n")
+                f.write(md_text)
 
-                if md_header_splits:
-                    for i, split in enumerate(md_header_splits):
-                        f.write(f"<!-- CHUNK {i+1} START -->\n")
-                        header_metadata = {k: v for k, v in split.metadata.items() if k.startswith("Header")}
-                        if header_metadata:
-                            f.write(f"<!-- Metadata: {json.dumps(header_metadata)} -->\n")
-                        f.write(split.page_content + "\n\n")
-                        f.write(f"<!-- CHUNK {i+1} END -->\n\n")
-                else:
-                    f.write(md_text)
-
+            # Store relative filepath for better cross-platform compatibility
+            rel_filepath = os.path.relpath(filepath, output_folder)
             index_rows.append({
                 "url": current_url,
                 "title": title,
-                "filepath": filepath,
-                "chunks": len(md_header_splits)
+                "filepath": rel_filepath,
             })
-            logger.info(f"Saved chunked data to {filepath}")
+            logger.info(f"Saved data to {filepath}")
 
     index_path = os.path.join(output_folder, "index.csv")
     df = pd.DataFrame(index_rows)

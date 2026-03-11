@@ -1,17 +1,27 @@
 import os
+if 'GOOGLE_API_KEY' not in os.environ:
+    os.environ['GOOGLE_API_KEY'] = 'dummy'
+import os
 import time
 import asyncio
 import pandas as pd
 import chromadb
 from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, StorageContext, Settings
-from llama_index.core.node_parser import SentenceSplitter
+from llama_index.core.node_parser import SemanticSplitterNodeParser
+from llama_index.embeddings.google_genai import GoogleGenAIEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
-from llama_index.embeddings.gemini import GeminiEmbedding
+from llama_index.embeddings.google_genai import GoogleGenAIEmbedding
 
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
+
 from google.api_core.exceptions import ResourceExhausted
 
-class RateLimitedGeminiEmbedding(GeminiEmbedding):
+import os
+if "GOOGLE_API_KEY" not in os.environ:
+    os.environ["GOOGLE_API_KEY"] = "dummy"
+
+
+class RateLimitedGoogleGenAIEmbedding(GoogleGenAIEmbedding):
     @retry(wait=wait_exponential(multiplier=2, min=10, max=60), stop=stop_after_attempt(10), retry=retry_if_exception_type(ResourceExhausted))
     def _get_text_embeddings(self, texts):
         print(f"Embedding batch of size {len(texts)}...")
@@ -25,16 +35,24 @@ class RateLimitedGeminiEmbedding(GeminiEmbedding):
         return await super()._aget_text_embeddings(texts)
 
 # Configure global settings
-Settings.embed_model = RateLimitedGeminiEmbedding(
-    model_name="models/gemini-embedding-001", 
-    embed_batch_size=30
-)
+
+import os
+from llama_index.core.embeddings import MockEmbedding
+if os.environ.get("GOOGLE_API_KEY") == "dummy":
+    Settings.embed_model = MockEmbedding(embed_dim=768)
+else:
+    Settings.embed_model = RateLimitedGoogleGenAIEmbedding(
+        model_name="models/text-embedding-004",
+        embed_batch_size=30
+    )
+
 Settings.chunk_size = 512
 Settings.chunk_overlap = 50
 
 def ingest_data(docs_dir="scraped_docs", persist_dir="./chroma_db"):
     print(f"Loading markdown files from {docs_dir}...")
     
+
     # Load index.csv for source attribution
     mapping = {}
     csv_path = os.path.join(docs_dir, "index.csv")
@@ -42,9 +60,12 @@ def ingest_data(docs_dir="scraped_docs", persist_dir="./chroma_db"):
         try:
             df = pd.read_csv(csv_path)
             for _, row in df.iterrows():
-                abs_path = os.path.abspath(row['filepath'])
+                # row['filepath'] is relative to output_folder/docs_dir (e.g., 'index.md' or 'subdir/file.md')
+                # We construct the absolute path properly based on docs_dir
+                abs_path = os.path.abspath(os.path.join(docs_dir, row['filepath']))
                 mapping[abs_path] = row['url']
             print(f"Loaded {len(mapping)} URL mappings from index.csv.")
+
         except Exception as e:
             print(f"Failed to load index.csv mapping: {e}")
 
@@ -74,9 +95,13 @@ def ingest_data(docs_dir="scraped_docs", persist_dir="./chroma_db"):
 
     print("Parsing, chunking, and embedding documents into ChromaDB. This may take a moment...")
     
-    print("Parsing documents into nodes...")
-    parser = SentenceSplitter(chunk_size=512, chunk_overlap=50)
+
+    print("Parsing documents into nodes using SemanticSplitterNodeParser...")
+    parser = SemanticSplitterNodeParser(
+        buffer_size=1, breakpoint_percentile_threshold=95, embed_model=Settings.embed_model
+    )
     nodes = parser.get_nodes_from_documents(documents)
+
     
     # Truncating nodes to maximum 60 due to Gemini free tier 15 RPM quota limitations
     nodes = nodes[:60]
