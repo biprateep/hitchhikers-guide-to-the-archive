@@ -1,7 +1,0 @@
-# Space Telecope Science Institute
-![MyST Single Sign-On \(SSO\) Portal](https://ssoportal.stsci.edu/idp/images/myst-sso-header-logo-2x.png)
-You may be seeing this page because you used the Back button while browsing a secure web site or application. Alternatively, you may have mistakenly bookmarked the web login form instead of the actual web site you wanted to bookmark or used a link created by somebody else who made the same mistake.
-  
-
-Left unchecked, this can cause errors on some browsers or result in you returning to the web site you tried to leave, so this page is presented instead.
-Powered by Shibboleth.
