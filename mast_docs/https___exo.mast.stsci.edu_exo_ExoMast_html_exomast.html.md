@@ -1,0 +1,3 @@
+# 404 Not Found
+* * *
+nginx/1.28.0
