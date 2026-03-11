@@ -6,6 +6,7 @@ A RAG (Retrieval-Augmented Generation) AI pipeline for the [MAST Archive](https:
 
 - **Python** ≥ 3.12
 - **[uv](https://docs.astral.sh/uv/)** – fast Python package manager (recommended)
+- You can work with conda or micromamba, and you can follow the instructions below.
 
 ## Package Dependencies
 
@@ -49,7 +50,8 @@ export GOOGLE_API_KEY="your-api-key-here"
    cd hitchhikers-guide-to-the-archive
    ```
 
-2. **Install dependencies with uv:**
+
+2. **Option1: Install dependencies with uv:**
 
    ```bash
    uv sync
@@ -60,6 +62,16 @@ export GOOGLE_API_KEY="your-api-key-here"
    > If you prefer pip, install the packages listed in the table above manually, e.g.  
    > `pip install crawl4ai pandas beautifulsoup4 langchain-text-splitters chromadb llama-index-core llama-index-vector-stores-chroma llama-index-embeddings-gemini llama-index-llms-gemini flask tenacity google-api-core`
 
+3 **Option1: Install dependencies with conda or micromamba:**
+
+  ```bash
+  conda create -n <env_name> python=3.12
+  ```
+  then
+  ```bash
+  pip install -r requirement.txt
+  ```
+
 ## Usage
 
 The pipeline has three stages: **Scrape → Ingest → Serve**.
@@ -69,7 +81,11 @@ The pipeline has three stages: **Scrape → Ingest → Serve**.
 - **`scrape.py`** – Custom crawler with markdown chunking and metadata (recommended):
 
   ```bash
-  uv run python scrape.py
+  uv run python scrape.py # if you are using uv
+  ```
+
+  ```bash
+  python scrape.py # if you are using conda or micromamba
   ```
 
   This writes chunked markdown files into `scraped_docs/` along with an `index.csv` mapping filenames to source URLs.
@@ -79,20 +95,36 @@ The pipeline has three stages: **Scrape → Ingest → Serve**.
 Embed the scraped documents and store them in ChromaDB:
 
 ```bash
-export GOOGLE_API_KEY="your-api-key-here"
-uv run python ingest.py
+export GOOGLE_API_KEY="your-api-key-here" # if you haven't already stored the key in your source file
 ```
+Run the `ingest` script.
+```bash
+uv run python ingest.py # if you are using uv
+```
+or
+```bash
+python ingest.py # if you are using conda or micromamba
+```
+
 
 This creates/populates the `chroma_db/` directory with vector embeddings.
 
-### 3. Run the chatbot
+### 3. Run the chatbot app
 
 Start the Flask web server:
 
 ```bash
-export GOOGLE_API_KEY="your-api-key-here"
-uv run python app.py
+export GOOGLE_API_KEY="your-api-key-here" # if you haven't already stored the key in your source file
 ```
+```bash
+uv run python app.py # if you use uv
+```
+or 
+```bash
+python app.py # if you use conda or micromamba
+```
+
+### 4. Play with Chat assistant on your broswer
 
 Then open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser to chat with the MAST documentation assistant.
 
