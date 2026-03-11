@@ -78,20 +78,8 @@ Unable to load page tree. It seems that you do not have permission to view the r
 
 
   * [Archive Support](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94963058/Archive+Support "Archive Support")
-    * [MAST Accounts](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/136481910/MAST+Accounts "MAST Accounts")
-    * [FAQ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/232358851/FAQ "FAQ")
-    * [Acronym List](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/102531200/Acronym+List "Acronym List")
   * [MAST Pro Tips](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/MAST+Pro+Tips "MAST Pro Tips")
-    * [Searching for Named Sources](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/298813886/Searching+for+Named+Sources "Searching for Named Sources")
-    * [Finding Solar System Bodies in MAST](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852359/Finding+Solar+System+Bodies+in+MAST "Finding Solar System Bodies in MAST")
-    * [High PM Stars in MAST](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852365/High+PM+Stars+in+MAST "High PM Stars in MAST")
   * [Portal Guide](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94962825/Portal+Guide "Portal Guide")
-    * [Introduction to the Portal](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94962826/Introduction+to+the+Portal "Introduction to the Portal")
-    * [Searching](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94962885/Searching "Searching")
-    * [Browsing Data](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94962939/Browsing+Data "Browsing Data")
-    * [Retrieving Data](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94963010/Retrieving+Data "Retrieving Data")
-    * [Tips and Notes](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94963055/Tips+and+Notes "Tips and Notes")
-    * [Demos and Tutorials](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94963057/Demos+and+Tutorials "Demos and Tutorials")
   * [JWST Archive Manual](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/113771318/JWST+Archive+Manual "JWST Archive Manual")
     * [Quick Start Guide](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/113771319/Quick+Start+Guide "Quick Start Guide")
     * [Field Guide to JWST Data](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/113771321/Field+Guide+to+JWST+Data "Field Guide to JWST Data")
@@ -100,24 +88,12 @@ Unable to load page tree. It seems that you do not have permission to view the r
     * [Special Topics](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/113771441/Special+Topics "Special Topics")
     * [JWST Commissioning Data Highlights](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/339050892/JWST+Commissioning+Data+Highlights "JWST Commissioning Data Highlights")
   * [Mission Search Guide](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/104958260/Mission+Search+Guide "Mission Search Guide")
-    * [Search Form Overview](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/104958261/Search+Form+Overview "Search Form Overview")
-    * [Mission Search Caveats](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/217350249/Mission+Search+Caveats "Mission Search Caveats")
-    * [Components](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/104958262/Components "Components")
   * [HLSP Contributor Guide](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/97290399/HLSP+Contributor+Guide "HLSP Contributor Guide")
-    * [About HLSPs](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/97290401/About+HLSPs "About HLSPs")
-    * [HLSP How-To Guide](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/97290402/HLSP+How-To+Guide "HLSP How-To Guide")
-    * [Required Contents](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/97290403/Required+Contents "Required Contents")
-    * [Required Metadata](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/97290409/Required+Metadata "Required Metadata")
-    * [Contribution Request Form](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/97290416/Contribution+Request+Form "Contribution Request Form")
   * [Jdaviz Guide](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/150113039/Jdaviz+Guide "Jdaviz Guide")
   * [Cloud Services Manual](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/183797522/Cloud+Services+Manual "Cloud Services Manual")
   * [CaSSI Manual](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/282168331/CaSSI+Manual "CaSSI Manual")
     * [JWST Mission Products](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/333677644/JWST+Mission+Products "JWST Mission Products")
-      * [JWST Supplemental Products](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/333677647/JWST+Supplemental+Products "JWST Supplemental Products")
     * [Roman Mission Products](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/282168347/Roman+Mission+Products "Roman Mission Products")
-      * [RITA](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/282168349/RITA "RITA")
-      * [RomanCal Refererence Products](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/333678054/RomanCal+Refererence+Products "RomanCal Refererence Products")
-      * [Roman Supplemental Products](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/333677656/Roman+Supplemental+Products "Roman Supplemental Products")
   * [HST Classic Migration Manual](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/158172245/HST+Classic+Migration+Manual "HST Classic Migration Manual")
 
 
@@ -131,7 +107,7 @@ Unable to load page tree. It seems that you do not have permission to view the r
     * [ Resolved comments  ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/282168331/CaSSI+Manual)
     * [ View in Hierarchy  ](https://outerspace.stsci.edu/pages/listpages-dirview.action?key=MASTDOCS&openId=282168331#selectedPageInHierarchy)
     * [ View Source  ](https://outerspace.stsci.edu/plugins/viewsource/viewpagesrc.action?pageId=282168331)
-    * [ Export to PDF  ](https://outerspace.stsci.edu/spaces/flyingpdf/pdfpageexport.action?pageId=282168331&atl_token=7e02bacc4fc8610cc39105fafb2cd23f38ff25e7)
+    * [ Export to PDF  ](https://outerspace.stsci.edu/spaces/flyingpdf/pdfpageexport.action?pageId=282168331&atl_token=498ee109f9d3b318634c34d07d249825a55fc99e)
     * [ Export to Word  ](https://outerspace.stsci.edu/exportword?pageId=282168331)
     * [ Page Labels  ](https://outerspace.stsci.edu/plugins/userlabeltool/pagebulklabeloperations.action?pageId=282168331)
     * [ Attachment Labels  ](https://outerspace.stsci.edu/plugins/userlabeltool/pagebulkattachmentoperations.action?pageId=282168331)
@@ -148,7 +124,7 @@ Unable to load page tree. It seems that you do not have permission to view the r
   * [](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/282168331/CaSSI+Manual)[](https://outerspace.stsci.edu/pages/viewpageattachments.action?pageId=282168331&metadataLink=true)
   * [Jira links](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/282168331/CaSSI+Manual)
   * [Workflow](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/282168331/CaSSI+Manual)
-  * [152 views](https://outerspace.stsci.edu/spaces/viewtrackerreport.action?key=MASTDOCS)
+  * [157 views](https://outerspace.stsci.edu/spaces/viewtrackerreport.action?key=MASTDOCS)
   * [Read Confirmation](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/282168331/CaSSI+Manual)
 
 
@@ -381,7 +357,7 @@ Insert macro
 
 You are not logged in. Any changes you make will be marked as anonymous. You may want to [Log In](https://outerspace.stsci.edu/login.action?os_destination=%2Fspaces%2FMASTDOCS%2Fpages%2F282168331%2FCaSSI%2BManual) if you already have an account.
 This page is also being edited by 
-If you are unable to use this CAPTCHA please [contact your administrator](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/282168331/administrators.action) for assistance.![CAPTCHA image](https://outerspace.stsci.edu/jcaptcha?id=526429921)
+If you are unable to use this CAPTCHA please [contact your administrator](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/282168331/administrators.action) for assistance.![CAPTCHA image](https://outerspace.stsci.edu/jcaptcha?id=1075464420)
 Edit
 Save
 Close

@@ -52,6 +52,11 @@ Hit enter to search
 
 
 Unable to load page tree. It seems that you do not have permission to view the root page. 
+##### Space shortcuts
+  * [TESS Archive Manual](https://outerspace.stsci.edu/spaces/TESS/pages/14562808/TESS+Archive+Manual)
+  * [FIMS-SPEAR Manual](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798103/FIMS-SPEAR+Manual)
+
+
 [ ](https://outerspace.stsci.edu/users/editmyprofile.action)
 [ ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852365/High+PM+Stars+in+MAST "Open page in fullscreen \( Type 'F', shift + f \)")
   * [ ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852365/High+PM+Stars+in+MAST)
@@ -62,7 +67,7 @@ Unable to load page tree. It seems that you do not have permission to view the r
     * [ Resolved comments  ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852365/High+PM+Stars+in+MAST)
     * [ View in Hierarchy  ](https://outerspace.stsci.edu/pages/listpages-dirview.action?key=MASTDOCS&openId=286852365#selectedPageInHierarchy)
     * [ View Source  ](https://outerspace.stsci.edu/plugins/viewsource/viewpagesrc.action?pageId=286852365)
-    * [ Export to PDF  ](https://outerspace.stsci.edu/spaces/flyingpdf/pdfpageexport.action?pageId=286852365&atl_token=7e02bacc4fc8610cc39105fafb2cd23f38ff25e7)
+    * [ Export to PDF  ](https://outerspace.stsci.edu/spaces/flyingpdf/pdfpageexport.action?pageId=286852365&atl_token=498ee109f9d3b318634c34d07d249825a55fc99e)
     * [ Export to Word  ](https://outerspace.stsci.edu/exportword?pageId=286852365)
     * [ Page Labels  ](https://outerspace.stsci.edu/plugins/userlabeltool/pagebulklabeloperations.action?pageId=286852365)
     * [ Attachment Labels  ](https://outerspace.stsci.edu/plugins/userlabeltool/pagebulkattachmentoperations.action?pageId=286852365)
@@ -389,7 +394,7 @@ Insert macro
 
 You are not logged in. Any changes you make will be marked as anonymous. You may want to [Log In](https://outerspace.stsci.edu/login.action?os_destination=%2Fspaces%2FMASTDOCS%2Fpages%2F286852365%2FHigh%2BPM%2BStars%2Bin%2BMAST) if you already have an account.
 This page is also being edited by 
-If you are unable to use this CAPTCHA please [contact your administrator](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852365/administrators.action) for assistance.![CAPTCHA image](https://outerspace.stsci.edu/jcaptcha?id=224512780)
+If you are unable to use this CAPTCHA please [contact your administrator](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852365/administrators.action) for assistance.![CAPTCHA image](https://outerspace.stsci.edu/jcaptcha?id=1541188219)
 Edit
 Save
 Close

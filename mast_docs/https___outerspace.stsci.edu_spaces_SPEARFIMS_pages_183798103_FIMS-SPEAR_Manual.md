@@ -64,18 +64,6 @@ Unable to load page tree. It seems that you do not have permission to view the r
   * [Archive Support](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94963058/Archive+Support)
 
 
-  * [FIMS-SPEAR Manual](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798103/FIMS-SPEAR+Manual "FIMS-SPEAR Manual")
-    * [Mission Teams](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798104/Mission+Teams "Mission Teams")
-    * [Updates](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798108/Updates "Updates")
-    * [Instrumentation](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798109/Instrumentation "Instrumentation")
-    * [Data Processing](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798116/Data+Processing "Data Processing")
-    * [Data Products](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798172/Data+Products "Data Products")
-    * [Data Access](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798180/Data+Access "Data Access")
-    * [Tutorials](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798192/Tutorials "Tutorials")
-    * [References](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798193/References "References")
-    * [How to Cite](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798194/How+to+Cite "How to Cite")
-
-
 183798103
 SPEARFIMS
 3
@@ -90,7 +78,7 @@ true
     * [ Resolved comments  ](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798103/FIMS-SPEAR+Manual)
     * [ View in Hierarchy  ](https://outerspace.stsci.edu/pages/listpages-dirview.action?key=SPEARFIMS&openId=183798103#selectedPageInHierarchy)
     * [ View Source  ](https://outerspace.stsci.edu/plugins/viewsource/viewpagesrc.action?pageId=183798103)
-    * [ Export to PDF  ](https://outerspace.stsci.edu/spaces/flyingpdf/pdfpageexport.action?pageId=183798103&atl_token=7e02bacc4fc8610cc39105fafb2cd23f38ff25e7)
+    * [ Export to PDF  ](https://outerspace.stsci.edu/spaces/flyingpdf/pdfpageexport.action?pageId=183798103&atl_token=498ee109f9d3b318634c34d07d249825a55fc99e)
     * [ Export to Word  ](https://outerspace.stsci.edu/exportword?pageId=183798103)
     * [ Page Labels  ](https://outerspace.stsci.edu/plugins/userlabeltool/pagebulklabeloperations.action?pageId=183798103)
     * [ Attachment Labels  ](https://outerspace.stsci.edu/plugins/userlabeltool/pagebulkattachmentoperations.action?pageId=183798103)
@@ -104,7 +92,7 @@ true
   * [](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798103/FIMS-SPEAR+Manual)
   * [Jira links](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798103/FIMS-SPEAR+Manual)
   * [Workflow](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798103/FIMS-SPEAR+Manual)
-  * [1,480 views](https://outerspace.stsci.edu/spaces/viewtrackerreport.action?key=SPEARFIMS)
+  * [](https://outerspace.stsci.edu/spaces/viewtrackerreport.action?key=SPEARFIMS)
   * [Read Confirmation](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798103/FIMS-SPEAR+Manual)
 
 
@@ -136,26 +124,6 @@ Science survey operations | 2003 Nov 14 - 2004 Nov 10
 **Spatial resolution** | 5 arcmin (7 arcmin in available products)  
 **Mission products** | All-sky hyperspectral imaging, emission line maps, star spectra, pointed observations of the Vela supernova remnant  
 # Table of Contents
-  * [Mission Teams](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798104/Mission+Teams "Mission Teams")
-Loading..
-  * [Updates](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798108/Updates "Updates")
-Loading..
-  * [Instrumentation](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798109/Instrumentation "Instrumentation")
-Loading..
-  * [Data Processing](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798116/Data+Processing "Data Processing")
-Loading..
-  * [Data Products](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798172/Data+Products "Data Products")
-Loading..
-  * [Data Access](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798180/Data+Access "Data Access")
-Loading..
-  * [Tutorials](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798192/Tutorials "Tutorials")
-Loading..
-  * [References](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798193/References "References")
-Loading..
-  * [How to Cite](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798194/How+to+Cite "How to Cite")
-Loading..
-
-
 # Popular Topics
   1. A-R
      * [attitude-time-delay](https://outerspace.stsci.edu/label/SPEARFIMS/attitude-time-delay)
@@ -362,7 +330,7 @@ Insert macro
 
 You are not logged in. Any changes you make will be marked as anonymous. You may want to [Log In](https://outerspace.stsci.edu/login.action?os_destination=%2Fspaces%2FSPEARFIMS%2Fpages%2F183798103%2FFIMS-SPEAR%2BManual) if you already have an account.
 This page is also being edited by 
-If you are unable to use this CAPTCHA please [contact your administrator](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798103/administrators.action) for assistance.![CAPTCHA image](https://outerspace.stsci.edu/jcaptcha?id=983085090)
+If you are unable to use this CAPTCHA please [contact your administrator](https://outerspace.stsci.edu/spaces/SPEARFIMS/pages/183798103/administrators.action) for assistance.![CAPTCHA image](https://outerspace.stsci.edu/jcaptcha?id=-41531239)
 Edit
 Save
 Close

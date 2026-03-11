@@ -20,18 +20,6 @@
 
 
   * Search
-  * Activity stream
-
-
-  * [Spaces](https://outerspace.stsci.edu/spacedirectory/view.action "Spaces")
-  * [People](https://outerspace.stsci.edu/browsepeople.action "People")
-  * [Calendars](https://outerspace.stsci.edu/calendar/mycalendar.action "Calendars")
-  * [](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94962826/Introduction+to+the+Portal)
-    * [Forums](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94962826/Introduction+to+the+Portal "Forums")
-    * [Analytics Cockpit](https://outerspace.stsci.edu/plugins/servlet/bitvoodoo/global-analytics-reports "Analytics Cockpit")
-    * [Analytics](https://outerspace.stsci.edu/plugins/confanalytics/analytics.action "Analytics")
-    * [Document Management](https://outerspace.stsci.edu/documentManagement/onboarding.action?spaceKey=$helper.spaceKey "Document Management")
-    * [Document Management](https://outerspace.stsci.edu/documentManagement/onboarding.action "Document Management")
 
 
 [ ![MAST](https://outerspace.stsci.edu/download/attachments/327682/atl.site.logo?version=1&modificationDate=1499352523875&api=v2) ](https://outerspace.stsci.edu/site/mast)
@@ -62,7 +50,7 @@ Unable to load page tree. It seems that you do not have permission to view the r
     * [ Resolved comments  ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94962826/Introduction+to+the+Portal)
     * [ View in Hierarchy  ](https://outerspace.stsci.edu/pages/listpages-dirview.action?key=MASTDOCS&openId=94962826#selectedPageInHierarchy)
     * [ View Source  ](https://outerspace.stsci.edu/plugins/viewsource/viewpagesrc.action?pageId=94962826)
-    * [ Export to PDF  ](https://outerspace.stsci.edu/spaces/flyingpdf/pdfpageexport.action?pageId=94962826&atl_token=7e02bacc4fc8610cc39105fafb2cd23f38ff25e7)
+    * [ Export to PDF  ](https://outerspace.stsci.edu/spaces/flyingpdf/pdfpageexport.action?pageId=94962826&atl_token=498ee109f9d3b318634c34d07d249825a55fc99e)
     * [ Export to Word  ](https://outerspace.stsci.edu/exportword?pageId=94962826)
     * [ Page Labels  ](https://outerspace.stsci.edu/plugins/userlabeltool/pagebulklabeloperations.action?pageId=94962826)
     * [ Attachment Labels  ](https://outerspace.stsci.edu/plugins/userlabeltool/pagebulkattachmentoperations.action?pageId=94962826)
@@ -285,7 +273,7 @@ Insert macro
 
 You are not logged in. Any changes you make will be marked as anonymous. You may want to [Log In](https://outerspace.stsci.edu/login.action?os_destination=%2Fspaces%2FMASTDOCS%2Fpages%2F94962826%2FIntroduction%2Bto%2Bthe%2BPortal) if you already have an account.
 This page is also being edited by 
-If you are unable to use this CAPTCHA please [contact your administrator](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94962826/administrators.action) for assistance.![CAPTCHA image](https://outerspace.stsci.edu/jcaptcha?id=1222426182)
+If you are unable to use this CAPTCHA please [contact your administrator](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94962826/administrators.action) for assistance.![CAPTCHA image](https://outerspace.stsci.edu/jcaptcha?id=623205547)
 Edit
 Save
 Close

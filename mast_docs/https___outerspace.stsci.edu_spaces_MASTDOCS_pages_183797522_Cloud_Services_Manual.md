@@ -93,9 +93,6 @@ Unable to load page tree. It seems that you do not have permission to view the r
   * [Portal Guide](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/94962825/Portal+Guide "Portal Guide")
   * [JWST Archive Manual](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/113771318/JWST+Archive+Manual "JWST Archive Manual")
   * [Mission Search Guide](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/104958260/Mission+Search+Guide "Mission Search Guide")
-    * [Search Form Overview](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/104958261/Search+Form+Overview "Search Form Overview")
-    * [Mission Search Caveats](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/217350249/Mission+Search+Caveats "Mission Search Caveats")
-    * [Components](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/104958262/Components "Components")
   * [HLSP Contributor Guide](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/97290399/HLSP+Contributor+Guide "HLSP Contributor Guide")
   * [Jdaviz Guide](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/150113039/Jdaviz+Guide "Jdaviz Guide")
   * [Cloud Services Manual](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/183797522/Cloud+Services+Manual "Cloud Services Manual")
@@ -115,7 +112,7 @@ Unable to load page tree. It seems that you do not have permission to view the r
     * [ Resolved comments  ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/183797522/Cloud+Services+Manual)
     * [ View in Hierarchy  ](https://outerspace.stsci.edu/pages/listpages-dirview.action?key=MASTDOCS&openId=183797522#selectedPageInHierarchy)
     * [ View Source  ](https://outerspace.stsci.edu/plugins/viewsource/viewpagesrc.action?pageId=183797522)
-    * [ Export to PDF  ](https://outerspace.stsci.edu/spaces/flyingpdf/pdfpageexport.action?pageId=183797522&atl_token=7e02bacc4fc8610cc39105fafb2cd23f38ff25e7)
+    * [ Export to PDF  ](https://outerspace.stsci.edu/spaces/flyingpdf/pdfpageexport.action?pageId=183797522&atl_token=498ee109f9d3b318634c34d07d249825a55fc99e)
     * [ Export to Word  ](https://outerspace.stsci.edu/exportword?pageId=183797522)
     * [ Page Labels  ](https://outerspace.stsci.edu/plugins/userlabeltool/pagebulklabeloperations.action?pageId=183797522)
     * [ Attachment Labels  ](https://outerspace.stsci.edu/plugins/userlabeltool/pagebulkattachmentoperations.action?pageId=183797522)
@@ -346,7 +343,7 @@ Insert macro
 
 You are not logged in. Any changes you make will be marked as anonymous. You may want to [Log In](https://outerspace.stsci.edu/login.action?os_destination=%2Fspaces%2FMASTDOCS%2Fpages%2F183797522%2FCloud%2BServices%2BManual) if you already have an account.
 This page is also being edited by 
-If you are unable to use this CAPTCHA please [contact your administrator](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/183797522/administrators.action) for assistance.![CAPTCHA image](https://outerspace.stsci.edu/jcaptcha?id=525767935)
+If you are unable to use this CAPTCHA please [contact your administrator](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/183797522/administrators.action) for assistance.![CAPTCHA image](https://outerspace.stsci.edu/jcaptcha?id=-53316867)
 Edit
 Save
 Close

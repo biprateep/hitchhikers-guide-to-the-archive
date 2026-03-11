@@ -5,7 +5,7 @@
   * [assistive.skiplink.to.quick.search](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/MAST+Pro+Tips#rw_search_query)
 
 
-  * [Skip to main content](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/MAST+Pro+Tips#main "Skip to main content \(Type 'u' then '8'\)")
+  * [Skip to main content](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/MAST+Pro+Tips#main "Skip to main content")
   * [Skip to breadcrumbs](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/MAST+Pro+Tips#breadcrumbs)
   * [Skip to search](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/MAST+Pro+Tips#quick-search-query)
 
@@ -13,7 +13,7 @@
   * [ Log in ](https://outerspace.stsci.edu/login.action?os_destination=%2Fspaces%2FMASTDOCS%2Fpages%2F286852358%2FMAST%2BPro%2BTips "Login")
   * [ Help / Tips Help ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/MAST+Pro+Tips "Help")
     * [ Online Help ](https://docs.atlassian.com/confluence/docs-95/ "Visit the Confluence documentation home")
-    * [ Keyboard Shortcuts ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/MAST+Pro+Tips "View available keyboard shortcuts \(Type '?'\)")
+    * [ Keyboard Shortcuts ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/MAST+Pro+Tips "View available keyboard shortcuts")
     * [ Feed Builder ](https://outerspace.stsci.edu/configurerssfeed.action "Create your custom RSS feed.")
     * [ What’s new ](https://confluence.atlassian.com/display/DOC/Confluence+9.5+Release+Notes)
     * [ About Confluence ](https://outerspace.stsci.edu/aboutconfluencepage.action "Get more information about Confluence")
@@ -44,13 +44,13 @@ Unable to load page tree. It seems that you do not have permission to view the r
 [ ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/MAST+Pro+Tips "Open page in fullscreen \( Type 'F', shift + f \)")
   * [ ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/MAST+Pro+Tips)
     * [ Remove Read Confirmation  ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/MAST+Pro+Tips)
-    * [ A _t_ tachments (0)  ](https://outerspace.stsci.edu/pages/viewpageattachments.action?pageId=286852358 "View Attachments \(Type 't'\)")
+    * [ A _t_ tachments (0)  ](https://outerspace.stsci.edu/pages/viewpageattachments.action?pageId=286852358 "View Attachments")
     * [ Page History  ](https://outerspace.stsci.edu/pages/viewpreviousversions.action?pageId=286852358)
     * [ Page Information  ](https://outerspace.stsci.edu/pages/viewinfo.action?pageId=286852358)
     * [ Resolved comments  ](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/MAST+Pro+Tips)
     * [ View in Hierarchy  ](https://outerspace.stsci.edu/pages/listpages-dirview.action?key=MASTDOCS&openId=286852358#selectedPageInHierarchy)
     * [ View Source  ](https://outerspace.stsci.edu/plugins/viewsource/viewpagesrc.action?pageId=286852358)
-    * [ Export to PDF  ](https://outerspace.stsci.edu/spaces/flyingpdf/pdfpageexport.action?pageId=286852358&atl_token=7e02bacc4fc8610cc39105fafb2cd23f38ff25e7)
+    * [ Export to PDF  ](https://outerspace.stsci.edu/spaces/flyingpdf/pdfpageexport.action?pageId=286852358&atl_token=498ee109f9d3b318634c34d07d249825a55fc99e)
     * [ Export to Word  ](https://outerspace.stsci.edu/exportword?pageId=286852358)
     * [ Page Labels  ](https://outerspace.stsci.edu/plugins/userlabeltool/pagebulklabeloperations.action?pageId=286852358)
     * [ Attachment Labels  ](https://outerspace.stsci.edu/plugins/userlabeltool/pagebulkattachmentoperations.action?pageId=286852358)
@@ -254,7 +254,7 @@ Insert macro
 
 You are not logged in. Any changes you make will be marked as anonymous. You may want to [Log In](https://outerspace.stsci.edu/login.action?os_destination=%2Fspaces%2FMASTDOCS%2Fpages%2F286852358%2FMAST%2BPro%2BTips) if you already have an account.
 This page is also being edited by 
-If you are unable to use this CAPTCHA please [contact your administrator](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/administrators.action) for assistance.![CAPTCHA image](https://outerspace.stsci.edu/jcaptcha?id=1341420236)
+If you are unable to use this CAPTCHA please [contact your administrator](https://outerspace.stsci.edu/spaces/MASTDOCS/pages/286852358/administrators.action) for assistance.![CAPTCHA image](https://outerspace.stsci.edu/jcaptcha?id=-1794573406)
 Edit
 Save
 Close

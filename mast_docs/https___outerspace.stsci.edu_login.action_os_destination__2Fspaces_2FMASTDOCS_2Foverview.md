@@ -1,19 +1,7 @@
 # Space Telecope Science Institute
 ![MyST Single Sign-On \(SSO\) Portal](https://ssoportal.stsci.edu/idp/images/myst-sso-header-logo-2x.png)
-## Enter your Email Address  
-and Password
-Email Address (or STScI username):
-Password:
-[Forgot Password?](http://proper.stsci.edu/proper/password/forgot)   
+You may be seeing this page because you used the Back button while browsing a secure web site or application. Alternatively, you may have mistakenly bookmarked the web login form instead of the actual web site you wanted to bookmark or used a link created by somebody else who made the same mistake.
   
 
-Warn me before logging me into other sites.
-Follow best security practices  
-when logging in from public terminals.
-### Best Security Practices
-For security reasons, please exit your web browser when you are done accessing services that require authentication.
-  
-
-### Useful Links
-    [Privacy Policy](http://www.stsci.edu/privacy)
+Left unchecked, this can cause errors on some browsers or result in you returning to the web site you tried to leave, so this page is presented instead.
 Powered by Shibboleth.

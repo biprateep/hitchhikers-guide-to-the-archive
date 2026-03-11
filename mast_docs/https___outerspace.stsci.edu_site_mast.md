@@ -34,6 +34,12 @@
 
 
 [ ![MAST](https://outerspace.stsci.edu/download/attachments/327682/atl.site.logo?version=1&modificationDate=1499352523875&api=v2) ](https://outerspace.stsci.edu/site/mast)
+  * [User Guides](https://outerspace.stsci.edu/category/ug)
+  * [MAST Data](https://outerspace.stsci.edu/category/md)
+  * [Mission Manuals](https://outerspace.stsci.edu/category/mm)
+  * [Data Search](https://outerspace.stsci.edu/category/ltsf)
+
+
 Quick Search
 Hit enter to search
 ## Welcome to MAST
