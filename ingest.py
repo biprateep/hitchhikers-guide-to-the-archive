@@ -1,8 +1,10 @@
 import os
 import time
 import asyncio
+import pandas as pd
 import chromadb
 from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, StorageContext, Settings
+from llama_index.core.node_parser import SentenceSplitter
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.embeddings.gemini import GeminiEmbedding
 
@@ -34,7 +36,6 @@ def ingest_data(docs_dir="scraped_docs", persist_dir="./chroma_db"):
     print(f"Loading markdown files from {docs_dir}...")
     
     # Load index.csv for source attribution
-    import pandas as pd
     mapping = {}
     csv_path = os.path.join(docs_dir, "index.csv")
     if os.path.exists(csv_path):
@@ -62,6 +63,10 @@ def ingest_data(docs_dir="scraped_docs", persist_dir="./chroma_db"):
 
     print(f"Initializing ChromaDB at {persist_dir}...")
     db = chromadb.PersistentClient(path=persist_dir)
+    try:
+        db.delete_collection("mast_docs")
+    except Exception:
+        pass  # Collection may not exist
     chroma_collection = db.get_or_create_collection("mast_docs")
 
     vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
@@ -70,7 +75,6 @@ def ingest_data(docs_dir="scraped_docs", persist_dir="./chroma_db"):
     print("Parsing, chunking, and embedding documents into ChromaDB. This may take a moment...")
     
     print("Parsing documents into nodes...")
-    from llama_index.core.node_parser import SentenceSplitter
     parser = SentenceSplitter(chunk_size=512, chunk_overlap=50)
     nodes = parser.get_nodes_from_documents(documents)
     
