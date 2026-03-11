@@ -86,8 +86,16 @@ def chat():
     try:
         response = query_engine.query(user_message)
 
-        # print(f"Response: {response}")
-        # print(f"Sources: {response.source_nodes}")
+        # DEBUG STATEMENTS
+        # Print the formatted prompt (with context and query filled in)
+        context_str = "\n\n".join(
+            n.node.get_content() if hasattr(n, "node") else n.get_content()
+            for n in response.source_nodes
+        )
+        formatted_prompt = qa_prompt.format(
+            context_str=context_str, query_str=user_message
+        )
+        print("qa_prompt (formatted):", formatted_prompt)
 
         # Extract source URLs from source nodes' metadata
         sources = set()
@@ -95,7 +103,7 @@ def chat():
             # print(f"Node: {node}")
             metadata = node.metadata
             url = metadata.get("source_url")
-            print(f"URL: {url}")  # TODO: These urls are not correct, need to fix
+            # print(f"URL: {url}")  # TODO: These urls are not correct, need to fix
             if url:
                 sources.add(url)
                 
