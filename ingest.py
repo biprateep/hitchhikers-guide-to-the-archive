@@ -32,7 +32,7 @@ if _use_mock:
     Settings.embed_model = MockEmbedding(embed_dim=768)
 else:
     Settings.embed_model = RateLimitedGoogleGenAIEmbedding(
-        model_name="models/text-embedding-004",
+        model_name="models/gemini-embedding-001",
         embed_batch_size=30
     )
 

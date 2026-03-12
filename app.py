@@ -1,6 +1,7 @@
 import os
-if 'GOOGLE_API_KEY' not in os.environ:
-    os.environ['GOOGLE_API_KEY'] = 'dummy'
+
+if "GOOGLE_API_KEY" not in os.environ:
+    os.environ["GOOGLE_API_KEY"] = "dummy"
 import os
 import chromadb
 from flask import Flask, render_template, request, jsonify
@@ -19,20 +20,27 @@ app = Flask(__name__)
 if "GOOGLE_API_KEY" not in os.environ:
     os.environ["GOOGLE_API_KEY"] = "dummy"
 if "GOOGLE_API_KEY" not in os.environ:
-    print("Warning: GOOGLE_API_KEY environment variable is missing. This will crash LLM.")
+    print(
+        "Warning: GOOGLE_API_KEY environment variable is missing. This will crash LLM."
+    )
 
 # Configure LLM and Embedding locally
 
 import os
 from llama_index.core.embeddings import MockEmbedding
 from llama_index.core.llms import MockLLM
+
 if os.environ.get("GOOGLE_API_KEY") == "dummy":
     Settings.embed_model = MockEmbedding(embed_dim=768)
     Settings.llm = MockLLM(max_tokens=256)
     # Reranker also uses LLM, replace with identity if mocked
 else:
-    Settings.llm = GoogleGenAI(model_name="models/gemma-3-27b-it", temperature=0.7)
-    Settings.embed_model = GoogleGenAIEmbedding(model_name="models/text-embedding-004")
+    Settings.llm = GoogleGenAI(
+        model_name="models/gemini-3.1-flash-lite-preview", temperature=0.7
+    )
+    Settings.embed_model = GoogleGenAIEmbedding(
+        model_name="models/gemini-embedding-001"
+    )
 
 
 # Load Vector Store
@@ -90,23 +98,23 @@ query_engine = RetrieverQueryEngine(
 )
 
 
-
-
 # Create Query Engine (no reranker - SentenceTransformerRerank has Mac compatibility issues)
 # query_engine = CitationQueryEngine.from_args(
 #     index,
 #     similarity_top_k=5,
 # )
 
+
 @app.route("/")
 def index_route():
     return render_template("index.html")
+
 
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.json
     user_message = data.get("message", "")
-    
+
     if not user_message:
         return jsonify({"error": "Empty message"}), 400
 
@@ -133,13 +141,11 @@ def chat():
             # print(f"URL: {url}")  # TODO: These urls are not correct, need to fix
             if url:
                 sources.add(url)
-                
-        return jsonify({
-            "response": str(response),
-            "sources": list(sources)
-        })
+
+        return jsonify({"response": str(response), "sources": list(sources)})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
