@@ -4,7 +4,8 @@ import asyncio
 import pandas as pd
 import chromadb
 from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, StorageContext, Settings
-from llama_index.core.node_parser import SemanticSplitterNodeParser
+from llama_index.core.node_parser import SentenceSplitter
+import re as _re
 from llama_index.embeddings.google_genai import GoogleGenAIEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
@@ -35,8 +36,41 @@ else:
         embed_batch_size=30
     )
 
-Settings.chunk_size = 512
-Settings.chunk_overlap = 50
+Settings.chunk_size = 1024
+Settings.chunk_overlap = 128
+
+# Patterns marking the start of navigation / boilerplate sections
+_NAV_MARKERS = [
+    "Unable to load page tree",
+    "##### Space shortcuts",
+    "[Data Use]",
+    "Send comments & corrections",
+    "Send comments \\& corrections",
+]
+
+def clean_document_text(text: str) -> str:
+    """Strip YAML frontmatter, duplicated navigation blocks, and footer boilerplate."""
+    # Remove YAML frontmatter
+    text = _re.sub(r'^---\n.*?\n---\n*', '', text, count=1, flags=_re.DOTALL)
+
+    # Remove navigation / boilerplate blocks line-by-line
+    cleaned_lines = []
+    skip = False
+    for line in text.splitlines():
+        # Check if this line starts a junk block
+        if any(marker in line for marker in _NAV_MARKERS):
+            skip = True
+            continue
+        # End the skip region when we hit a real heading (actual content resumes)
+        if skip and _re.match(r'^#{1,3} ', line):
+            skip = False
+        if not skip:
+            cleaned_lines.append(line)
+
+    text = '\n'.join(cleaned_lines)
+    # Collapse excessive blank lines
+    text = _re.sub(r'\n{3,}', '\n\n', text)
+    return text.strip()
 
 def ingest_data(docs_dir="scraped_docs", persist_dir="./chroma_db"):
     print(f"Loading markdown files from {docs_dir}...")
@@ -71,6 +105,16 @@ def ingest_data(docs_dir="scraped_docs", persist_dir="./chroma_db"):
     documents = loader.load_data()
     print(f"Loaded {len(documents)} document fragments.")
 
+    # Clean navigation junk from every document
+    skipped = 0
+    for doc in documents:
+        cleaned = clean_document_text(doc.get_content())
+        doc.set_content(cleaned)
+        if len(cleaned.strip()) < 20:
+            skipped += 1
+    documents = [d for d in documents if len(d.get_content().strip()) >= 20]
+    print(f"After cleaning: {len(documents)} documents ({skipped} too short, discarded).")
+
     print(f"Initializing ChromaDB at {persist_dir}...")
     db = chromadb.PersistentClient(path=persist_dir)
     try:
@@ -83,18 +127,14 @@ def ingest_data(docs_dir="scraped_docs", persist_dir="./chroma_db"):
     storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
     print("Parsing, chunking, and embedding documents into ChromaDB. This may take a moment...")
-    
 
-    print("Parsing documents into nodes using SemanticSplitterNodeParser...")
-    parser = SemanticSplitterNodeParser(
-        buffer_size=1, breakpoint_percentile_threshold=95, embed_model=Settings.embed_model
+    print("Splitting documents into nodes using SentenceSplitter...")
+    parser = SentenceSplitter(
+        chunk_size=Settings.chunk_size,
+        chunk_overlap=Settings.chunk_overlap,
     )
     nodes = parser.get_nodes_from_documents(documents)
-
-    
-    # Truncating nodes to maximum 60 due to Gemini free tier 15 RPM quota limitations
-    nodes = nodes[:60]
-    print(f"Extracted and truncated to {len(nodes)} nodes for quick demonstration.")
+    print(f"Extracted {len(nodes)} nodes from {len(documents)} documents.")
 
     # Create empty index
     index = VectorStoreIndex.from_vector_store(
