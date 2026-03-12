@@ -4,8 +4,8 @@ import chromadb
 from flask import Flask, render_template, request, jsonify
 from llama_index.core import VectorStoreIndex, StorageContext, Settings, PromptTemplate
 from llama_index.vector_stores.chroma import ChromaVectorStore
-from llama_index.llms.gemini import Gemini
-from llama_index.embeddings.gemini import GeminiEmbedding
+from llama_index.llms.google_genai import GoogleGenAI
+from llama_index.embeddings.google_genai import GoogleGenAIEmbedding
 from llama_index.core.query_engine import CitationQueryEngine
 from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core import get_response_synthesizer
@@ -18,8 +18,8 @@ if "GOOGLE_API_KEY" not in os.environ:
 
 # Configure LLM and Embedding locally
 # Settings.llm = Gemini(model_name="models/gemma-3-27b-it", temperature=0.7)
-Settings.llm = Gemini(model_name="models/gemini-2.5-flash")
-Settings.embed_model = GeminiEmbedding(model_name="models/gemini-embedding-001")
+Settings.llm = GoogleGenAI(model="models/gemma-3-27b-it")
+Settings.embed_model = GoogleGenAIEmbedding(model="models/text-embedding-004")
 
 # Load Vector Store
 print("Loading Vector Store...")

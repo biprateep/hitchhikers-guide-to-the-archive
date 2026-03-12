@@ -6,19 +6,19 @@ import chromadb
 from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, StorageContext, Settings
 from llama_index.core.node_parser import SentenceSplitter
 from llama_index.vector_stores.chroma import ChromaVectorStore
-from llama_index.embeddings.gemini import GeminiEmbedding
+from llama_index.embeddings.google_genai import GoogleGenAIEmbedding
 
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
-from google.api_core.exceptions import ResourceExhausted
+from google.genai.errors import APIError
 
-class RateLimitedGeminiEmbedding(GeminiEmbedding):
-    @retry(wait=wait_exponential(multiplier=2, min=10, max=60), stop=stop_after_attempt(10), retry=retry_if_exception_type(ResourceExhausted))
+class RateLimitedGeminiEmbedding(GoogleGenAIEmbedding):
+    @retry(wait=wait_exponential(multiplier=2, min=10, max=60), stop=stop_after_attempt(10), retry=retry_if_exception_type(APIError))
     def _get_text_embeddings(self, texts):
         print(f"Embedding batch of size {len(texts)}...")
         time.sleep(2.0)
         return super()._get_text_embeddings(texts)
     
-    @retry(wait=wait_exponential(multiplier=2, min=10, max=60), stop=stop_after_attempt(10), retry=retry_if_exception_type(ResourceExhausted))
+    @retry(wait=wait_exponential(multiplier=2, min=10, max=60), stop=stop_after_attempt(10), retry=retry_if_exception_type(APIError))
     async def _aget_text_embeddings(self, texts):
         print(f"Async embedding batch of size {len(texts)}...")
         await asyncio.sleep(2.0)
@@ -26,7 +26,7 @@ class RateLimitedGeminiEmbedding(GeminiEmbedding):
 
 # Configure global settings
 Settings.embed_model = RateLimitedGeminiEmbedding(
-    model_name="models/gemini-embedding-001", 
+    model="models/text-embedding-004",
     embed_batch_size=30
 )
 Settings.chunk_size = 512
