@@ -19,7 +19,7 @@ class RateLimitedGoogleGenAIEmbedding(GoogleGenAIEmbedding):
         time.sleep(2.0)
         return super()._get_text_embeddings(texts)
     
-    @retry(wait=wait_exponential(multiplier=2, min=10, max=60), stop=stop_after_attempt(10), retry=retry_if_exception_type(ResourceExhausted))
+    @retry(wait=wait_exponential(multiplier=2, min=10, max=60), stop=stop_after_attempt(10), retry=retry_if_exception_type(APIError))
     async def _aget_text_embeddings(self, texts):
         print(f"Async embedding batch of size {len(texts)}...")
         await asyncio.sleep(2.0)
