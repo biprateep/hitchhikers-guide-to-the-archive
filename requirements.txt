@@ -24,6 +24,7 @@ annotated-types==0.7.0
 anyio==4.12.1
     # via
     #   crawl4ai
+    #   google-genai
     #   httpx
     #   openai
     #   watchfiles
@@ -97,7 +98,9 @@ deprecated==1.3.1
 dirtyjson==1.0.8
     # via llama-index-core
 distro==1.9.0
-    # via openai
+    # via
+    #   google-genai
+    #   openai
 durationpy==0.10
     # via kubernetes
 fake-http-header==0.3.5
@@ -124,33 +127,20 @@ fsspec==2026.2.0
     # via
     #   huggingface-hub
     #   llama-index-core
-google-ai-generativelanguage==0.6.15
-    # via google-generativeai
 google-api-core==2.30.0
-    # via
-    #   hitchhikers-guide-to-the-archive (pyproject.toml)
-    #   google-ai-generativelanguage
-    #   google-api-python-client
-    #   google-generativeai
-google-api-python-client==2.192.0
-    # via google-generativeai
+    # via hitchhikers-guide-to-the-archive (pyproject.toml)
 google-auth==2.49.0
     # via
-    #   google-ai-generativelanguage
     #   google-api-core
-    #   google-api-python-client
-    #   google-auth-httplib2
-    #   google-generativeai
-google-auth-httplib2==0.3.0
-    # via google-api-python-client
-google-generativeai==0.8.6
+    #   google-genai
+google-genai==1.66.0
     # via
-    #   llama-index-embeddings-gemini
-    #   llama-index-llms-gemini
+    #   hitchhikers-guide-to-the-archive (pyproject.toml)
+    #   llama-index-embeddings-google-genai
+    #   llama-index-llms-google-genai
 googleapis-common-protos==1.73.0
     # via
     #   google-api-core
-    #   grpcio-status
     #   opentelemetry-exporter-otlp-proto-grpc
 greenlet==3.3.2
     # via
@@ -168,11 +158,7 @@ griffelib==2.0.0
 grpcio==1.78.0
     # via
     #   chromadb
-    #   google-api-core
-    #   grpcio-status
     #   opentelemetry-exporter-otlp-proto-grpc
-grpcio-status==1.71.2
-    # via google-api-core
 h11==0.16.0
     # via
     #   httpcore
@@ -185,16 +171,13 @@ hpack==4.1.0
     # via h2
 httpcore==1.0.9
     # via httpx
-httplib2==0.31.2
-    # via
-    #   google-api-python-client
-    #   google-auth-httplib2
 httptools==0.7.1
     # via uvicorn
 httpx==0.28.1
     # via
     #   chromadb
     #   crawl4ai
+    #   google-genai
     #   huggingface-hub
     #   langsmith
     #   litellm
@@ -273,10 +256,10 @@ llama-index-core==0.12.52.post1
     #   llama-index
     #   llama-index-agent-openai
     #   llama-index-cli
-    #   llama-index-embeddings-gemini
+    #   llama-index-embeddings-google-genai
     #   llama-index-embeddings-openai
     #   llama-index-indices-managed-llama-cloud
-    #   llama-index-llms-gemini
+    #   llama-index-llms-google-genai
     #   llama-index-llms-openai
     #   llama-index-multi-modal-llms-openai
     #   llama-index-program-openai
@@ -284,7 +267,7 @@ llama-index-core==0.12.52.post1
     #   llama-index-readers-file
     #   llama-index-readers-llama-parse
     #   llama-index-vector-stores-chroma
-llama-index-embeddings-gemini==0.3.2
+llama-index-embeddings-google-genai==0.2.1
     # via hitchhikers-guide-to-the-archive (pyproject.toml)
 llama-index-embeddings-openai==0.3.1
     # via
@@ -294,7 +277,7 @@ llama-index-indices-managed-llama-cloud==0.8.0
     # via llama-index
 llama-index-instrumentation==0.4.3
     # via llama-index-workflows
-llama-index-llms-gemini==0.5.0
+llama-index-llms-google-genai==0.2.6
     # via hitchhikers-guide-to-the-archive (pyproject.toml)
 llama-index-llms-openai==0.4.7
     # via
@@ -422,7 +405,7 @@ pillow==10.4.0
     # via
     #   crawl4ai
     #   llama-index-core
-    #   llama-index-llms-gemini
+    #   llama-index-llms-google-genai
 platformdirs==4.9.4
     # via
     #   banks
@@ -437,16 +420,11 @@ propcache==0.4.1
     #   aiohttp
     #   yarl
 proto-plus==1.27.1
-    # via
-    #   google-ai-generativelanguage
-    #   google-api-core
+    # via google-api-core
 protobuf==5.29.6
     # via
-    #   google-ai-generativelanguage
     #   google-api-core
-    #   google-generativeai
     #   googleapis-common-protos
-    #   grpcio-status
     #   onnxruntime
     #   opentelemetry-proto
     #   proto-plus
@@ -467,7 +445,7 @@ pydantic==2.12.5
     #   banks
     #   chromadb
     #   crawl4ai
-    #   google-generativeai
+    #   google-genai
     #   langchain-core
     #   langsmith
     #   litellm
@@ -490,8 +468,6 @@ pygments==2.19.2
     # via rich
 pyopenssl==25.3.0
     # via crawl4ai
-pyparsing==3.3.2
-    # via httplib2
 pypdf==5.9.0
     # via llama-index-readers-file
 pypika==0.51.1
@@ -532,6 +508,8 @@ requests==2.32.5
     # via
     #   crawl4ai
     #   google-api-core
+    #   google-auth
+    #   google-genai
     #   kubernetes
     #   langsmith
     #   llama-index-core
@@ -570,7 +548,9 @@ six==1.17.0
     #   kubernetes
     #   python-dateutil
 sniffio==1.3.1
-    # via openai
+    # via
+    #   google-genai
+    #   openai
 snowballstemmer==2.2.0
     # via crawl4ai
 soupsieve==2.8.3
@@ -585,6 +565,7 @@ tenacity==9.1.4
     # via
     #   hitchhikers-guide-to-the-archive (pyproject.toml)
     #   chromadb
+    #   google-genai
     #   langchain-core
     #   llama-cloud-services
     #   llama-index-core
@@ -601,7 +582,6 @@ tokenizers==0.22.2
 tqdm==4.67.3
     # via
     #   chromadb
-    #   google-generativeai
     #   huggingface-hub
     #   llama-index-core
     #   nltk
@@ -618,7 +598,7 @@ typing-extensions==4.15.0
     #   anyio
     #   beautifulsoup4
     #   chromadb
-    #   google-generativeai
+    #   google-genai
     #   grpcio
     #   huggingface-hub
     #   langchain-core
@@ -645,8 +625,6 @@ typing-inspection==0.4.2
     # via
     #   pydantic
     #   pydantic-settings
-uritemplate==4.2.0
-    # via google-api-python-client
 urllib3==2.6.3
     # via
     #   kubernetes
@@ -664,7 +642,9 @@ watchfiles==1.1.1
 websocket-client==1.9.0
     # via kubernetes
 websockets==16.0
-    # via uvicorn
+    # via
+    #   google-genai
+    #   uvicorn
 werkzeug==3.1.6
     # via flask
 wrapt==2.1.2

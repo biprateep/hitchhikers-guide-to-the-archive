@@ -2,7 +2,7 @@ import os
 
 if "GOOGLE_API_KEY" not in os.environ:
     os.environ["GOOGLE_API_KEY"] = "dummy"
-import os
+
 import chromadb
 from flask import Flask, render_template, request, jsonify
 from llama_index.core import VectorStoreIndex, StorageContext, Settings, PromptTemplate
@@ -15,20 +15,8 @@ from llama_index.core import get_response_synthesizer
 
 app = Flask(__name__)
 
-# Verify API key
-
-if "GOOGLE_API_KEY" not in os.environ:
-    os.environ["GOOGLE_API_KEY"] = "dummy"
-if "GOOGLE_API_KEY" not in os.environ:
-    print(
-        "Warning: GOOGLE_API_KEY environment variable is missing. This will crash LLM."
-    )
-
 # Configure LLM and Embedding locally
-
-import os
 from llama_index.core.embeddings import MockEmbedding
-from llama_index.core.llms import MockLLM
 
 if os.environ.get("GOOGLE_API_KEY") == "dummy":
     Settings.embed_model = MockEmbedding(embed_dim=768)

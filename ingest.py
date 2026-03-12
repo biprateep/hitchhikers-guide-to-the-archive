@@ -8,7 +8,7 @@ from llama_index.core.node_parser import SemanticSplitterNodeParser
 from llama_index.embeddings.google_genai import GoogleGenAIEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
-
+from llama_index.core.embeddings import MockEmbedding
 from google.api_core.exceptions import ResourceExhausted
 
 
@@ -19,14 +19,13 @@ class RateLimitedGoogleGenAIEmbedding(GoogleGenAIEmbedding):
         time.sleep(2.0)
         return super()._get_text_embeddings(texts)
     
-    @retry(wait=wait_exponential(multiplier=2, min=10, max=60), stop=stop_after_attempt(10), retry=retry_if_exception_type(APIError))
+    @retry(wait=wait_exponential(multiplier=2, min=10, max=60), stop=stop_after_attempt(10), retry=retry_if_exception_type(ResourceExhausted))
     async def _aget_text_embeddings(self, texts):
         print(f"Async embedding batch of size {len(texts)}...")
         await asyncio.sleep(2.0)
         return await super()._aget_text_embeddings(texts)
 
 # Configure global settings
-from llama_index.core.embeddings import MockEmbedding
 _use_mock = os.environ.get("USE_MOCK_EMBEDDING", "").lower() in ("1", "true", "yes")
 if _use_mock:
     Settings.embed_model = MockEmbedding(embed_dim=768)

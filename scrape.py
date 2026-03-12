@@ -1,7 +1,6 @@
 import asyncio
 import os
 import re
-import json
 import logging
 import pandas as pd
 from urllib.parse import urlparse, urljoin, urldefrag
