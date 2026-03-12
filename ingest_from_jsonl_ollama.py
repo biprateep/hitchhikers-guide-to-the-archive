@@ -165,8 +165,8 @@ def parse_args():
     )
     parser.add_argument(
         "--persist-dir",
-        default="./chroma_db",
-        help="Directory where ChromaDB will persist data (default: ./chroma_db)",
+        default="./chroma_db_ollama",
+        help="Directory where ChromaDB will persist data (default: ./chroma_db_ollama)",
     )
     parser.add_argument(
         "--collection",
