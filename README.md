@@ -34,11 +34,20 @@ The project depends on the following third-party Python packages:
 | Variable | Required By | Description |
 |---|---|---|
 | `GOOGLE_API_KEY` | `ingest.py`, `app.py` | API key for Google Gemini (embeddings and LLM). Obtain one from [Google AI Studio](https://aistudio.google.com/apikey). |
+| `public_password` | `app.py` (web access) | Password required to access the app UI and API when deployed online. |
+| `FLASK_SECRET_KEY` | `app.py` (sessions) | Secret key used to sign login session cookies. |
 
 Set it before running ingestion or the chatbot:
 
 ```bash
 export GOOGLE_API_KEY="your-api-key-here"
+```
+
+For protected access:
+
+```bash
+export public_password="your-public-app-password"
+export FLASK_SECRET_KEY="a-long-random-secret"
 ```
 
 ## Installation
@@ -127,6 +136,17 @@ python app.py # if you use conda or micromamba
 ### 4. Play with Chat assistant on your broswer
 
 Then open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser to chat with the MAST documentation assistant.
+
+## Deploy on Render (with local ChromaDB)
+
+1. Build the vector store locally first using `python ingest.py`.
+2. Commit and push the generated `chroma_db/` directory with your app code.
+3. Deploy using the included [render.yaml](render.yaml).
+4. In Render environment variables, set:
+  - `GOOGLE_API_KEY`
+  - `public_password`
+  - `FLASK_SECRET_KEY` (or let `render.yaml` generate it)
+5. Open the deployed URL, enter the password on the login page, then access the chat app.
 
 ## Project Structure
 

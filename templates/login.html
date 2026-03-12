@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MAST Assistant Login</title>
+    <style>
+      :root {
+        --bg-color: #1e1e20;
+        --card-bg: #2a2b2e;
+        --text-color: #e3e3e3;
+        --input-bg: #1f2023;
+        --border-color: #4a4b50;
+        --accent-color: #8ab4f8;
+        --font-family:
+          "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-color);
+        color: var(--text-color);
+        font-family: var(--font-family);
+      }
+
+      .page {
+        min-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 400px;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 1.4rem;
+      }
+
+      p {
+        margin: 0 0 18px;
+        color: #bfc1c7;
+        line-height: 1.4;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+      }
+
+      input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        background: var(--input-bg);
+        color: var(--text-color);
+        font-size: 1rem;
+        box-sizing: border-box;
+        margin-bottom: 12px;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: var(--accent-color);
+        color: #111;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      .error {
+        margin-top: 10px;
+        color: #ff8f8f;
+        font-size: 0.92rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <form class="card" method="POST" action="/login">
+        <h1>Protected Access</h1>
+        <p>Enter the password to access the MAST Assistant.</p>
+
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          autofocus
+        />
+
+        <button type="submit">Enter</button>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+      </form>
+    </div>
+  </body>
+</html>
