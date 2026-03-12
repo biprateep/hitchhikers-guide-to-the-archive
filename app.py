@@ -17,6 +17,7 @@ app = Flask(__name__)
 
 # Configure LLM and Embedding locally
 from llama_index.core.embeddings import MockEmbedding
+from llama_index.core.llms import MockLLM
 
 if os.environ.get("GOOGLE_API_KEY") == "dummy":
     Settings.embed_model = MockEmbedding(embed_dim=768)
@@ -24,7 +25,7 @@ if os.environ.get("GOOGLE_API_KEY") == "dummy":
     # Reranker also uses LLM, replace with identity if mocked
 else:
     Settings.llm = GoogleGenAI(
-        model_name="models/gemini-3.1-flash-lite-preview", temperature=0.7
+        model="models/gemini-3.1-flash-lite-preview", temperature=0.7
     )
     Settings.embed_model = GoogleGenAIEmbedding(
         model_name="models/gemini-embedding-001"
