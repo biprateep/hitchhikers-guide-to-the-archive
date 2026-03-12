@@ -93,7 +93,7 @@ def load_nodes_from_jsonl(jsonl_path: str, max_nodes: int | None = None) -> list
 
 def ingest_data(
     jsonl_path: str  = "mast_docs_chunks.jsonl",
-    persist_dir: str = "./chroma_db",
+    persist_dir: str = "./chroma_db_ollama",
     collection: str  = "mast_docs",
     batch_size: int  = 64,
     max_nodes: int | None = None,
