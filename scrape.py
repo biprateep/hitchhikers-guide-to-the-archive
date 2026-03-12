@@ -12,6 +12,25 @@ from bs4 import BeautifulSoup
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+# Compiled once at module level; reused for every URL checked during crawling
+_JUNK_PATTERNS = [
+    re.compile(r'login', re.IGNORECASE),
+    re.compile(r'signup', re.IGNORECASE),
+    re.compile(r'\?pageId=', re.IGNORECASE),
+    re.compile(r'\?focusedCommentId=', re.IGNORECASE),
+    re.compile(r'viewpage\.action\?', re.IGNORECASE),
+    re.compile(r'user\.action\?', re.IGNORECASE),
+    re.compile(r'history', re.IGNORECASE),
+    re.compile(r'attachment', re.IGNORECASE),
+    re.compile(r'export', re.IGNORECASE),
+    re.compile(r'edit', re.IGNORECASE),
+    re.compile(r'aboutconfluencepage\.action', re.IGNORECASE),
+    re.compile(r'configurerssfeed\.action', re.IGNORECASE),
+    re.compile(r'spacedirectory/', re.IGNORECASE),
+    re.compile(r'browsepeople\.action', re.IGNORECASE),
+    re.compile(r'collector/', re.IGNORECASE),
+]
+
 async def crawl_site_to_markdown(base_url, output_folder="scraped_docs"):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -79,26 +98,8 @@ async def crawl_site_to_markdown(base_url, output_folder="scraped_docs"):
                 full_url = urljoin(current_url, href)
                 full_url, _ = urldefrag(full_url)
                 
-
                 # Filter out junk URLs (e.g. login pages, history, raw data, attachment views)
-                junk_patterns = [
-                    r'login',
-                    r'signup',
-                    r'\?pageId=',
-                    r'\?focusedCommentId=',
-                    r'viewpage\.action\?',
-                    r'user\.action\?',
-                    r'history',
-                    r'attachment',
-                    r'export',
-                    r'edit',
-                    r'aboutconfluencepage\.action',
-                    r'configurerssfeed\.action',
-                    r'spacedirectory/',
-                    r'browsepeople\.action',
-                    r'collector/'
-                ]
-                if any(re.search(pattern, full_url, re.IGNORECASE) for pattern in junk_patterns):
+                if any(pattern.search(full_url) for pattern in _JUNK_PATTERNS):
                     continue
 
                 if full_url.startswith(base_domain) and full_url not in visited and full_url not in queue and "$" not in full_url:
