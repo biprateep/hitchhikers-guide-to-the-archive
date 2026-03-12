@@ -28,8 +28,9 @@ from llama_index.core import get_response_synthesizer
 
 OLLAMA_BASE_URL   = os.environ.get("OLLAMA_BASE_URL",   "http://localhost:11434")
 OLLAMA_LLM        = os.environ.get("OLLAMA_LLM",        "llama3.2")
+# OLLAMA_LLM        = os.environ.get("OLLAMA_LLM",        "gemma3:12b")
 OLLAMA_EMBED      = os.environ.get("OLLAMA_EMBED",       "nomic-embed-text")
-CHROMA_PATH       = os.environ.get("CHROMA_PATH",        "./chroma_db")
+CHROMA_PATH       = os.environ.get("CHROMA_PATH",        "./chroma_db_ollama")
 CHROMA_COLLECTION = os.environ.get("CHROMA_COLLECTION",  "mast_docs")
 
 # ─── App ──────────────────────────────────────────────────────────────────────
@@ -44,7 +45,7 @@ print(f"Configuring Ollama embed: {OLLAMA_EMBED} @ {OLLAMA_BASE_URL}")
 Settings.llm = Ollama(
     model           = OLLAMA_LLM,
     base_url        = OLLAMA_BASE_URL,
-    temperature     = 0.2,
+    temperature     = 0.7,
     request_timeout = 120.0,   # local models can be slow; raise if needed
 )
 
@@ -124,7 +125,7 @@ def _extract_sources(source_nodes: list) -> list[dict]:
             "title"  : meta.get("title",    ""),
             "section": meta.get("ancestors", ""),
             "labels" : meta.get("labels",   ""),
-            "score"  : round(node.score, 3) if getattr(node, "score", None) is not None else None,
+            "score"  : node.score if getattr(node, "score", None) is not None else None,
         })
 
     sources.sort(
@@ -199,5 +200,5 @@ def health():
 # ─── Entry point ──────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    debug_mode = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
+    debug_mode = os.environ.get("FLASK_DEBUG", "true").lower() == "true"
     app.run(host="127.0.0.1", port=5000, debug=debug_mode)
