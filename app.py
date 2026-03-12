@@ -1,25 +1,41 @@
 import os
+if 'GOOGLE_API_KEY' not in os.environ:
+    os.environ['GOOGLE_API_KEY'] = 'dummy'
+import os
 import re
 import chromadb
 from flask import Flask, render_template, request, jsonify
 from llama_index.core import VectorStoreIndex, StorageContext, Settings, PromptTemplate
 from llama_index.vector_stores.chroma import ChromaVectorStore
-from llama_index.llms.gemini import Gemini
-from llama_index.embeddings.gemini import GeminiEmbedding
+from llama_index.llms.google_genai import GoogleGenAI
+from llama_index.embeddings.google_genai import GoogleGenAIEmbedding
 from llama_index.core.query_engine import CitationQueryEngine
 from llama_index.core.query_engine import RetrieverQueryEngine
+from llama_index.core.postprocessor import LLMRerank
 from llama_index.core import get_response_synthesizer
 
 app = Flask(__name__)
 
 # Verify API key
+
+if "GOOGLE_API_KEY" not in os.environ:
+    os.environ["GOOGLE_API_KEY"] = "dummy"
 if "GOOGLE_API_KEY" not in os.environ:
     print("Warning: GOOGLE_API_KEY environment variable is missing. This will crash LLM.")
 
 # Configure LLM and Embedding locally
-# Settings.llm = Gemini(model_name="models/gemma-3-27b-it", temperature=0.7)
-Settings.llm = Gemini(model_name="models/gemini-2.5-flash")
-Settings.embed_model = GeminiEmbedding(model_name="models/gemini-embedding-001")
+
+import os
+from llama_index.core.embeddings import MockEmbedding
+from llama_index.core.llms import MockLLM
+if os.environ.get("GOOGLE_API_KEY") == "dummy":
+    Settings.embed_model = MockEmbedding(embed_dim=768)
+    Settings.llm = MockLLM(max_tokens=256)
+    # Reranker also uses LLM, replace with identity if mocked
+else:
+    Settings.llm = GoogleGenAI(model_name="models/gemma-3-27b-it", temperature=0.7)
+    Settings.embed_model = GoogleGenAIEmbedding(model_name="models/text-embedding-004")
+
 
 # Load Vector Store
 print("Loading Vector Store...")
@@ -52,17 +68,30 @@ qa_prompt = PromptTemplate(qa_prompt_str)
 # Create retriever from index
 retriever = index.as_retriever(similarity_top_k=15)
 
+
 # Build response synthesizer with your custom prompt
 response_synthesizer = get_response_synthesizer(
     response_mode="compact",  # or "tree_summarize" for longer docs
     text_qa_template=qa_prompt,
 )
 
+
+# Set up LLM Reranker
+print("Setting up LLM Reranker...")
+if os.environ.get("GOOGLE_API_KEY") == "dummy":
+    node_postprocessors = []
+else:
+    reranker = LLMRerank(choice_batch_size=5, top_n=3, llm=Settings.llm)
+    node_postprocessors = [reranker]
+
 # Assemble the query engine
 query_engine = RetrieverQueryEngine(
     retriever=retriever,
     response_synthesizer=response_synthesizer,
+    node_postprocessors=node_postprocessors,
 )
+
+
 
 
 # Create Query Engine (no reranker - SentenceTransformerRerank has Mac compatibility issues)
