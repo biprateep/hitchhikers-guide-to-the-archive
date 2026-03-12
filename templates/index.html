@@ -288,41 +288,15 @@
                 if (sources && sources.length > 0) {
                     const sourcesDiv = document.createElement('div');
                     sourcesDiv.className = 'sources';
-                    sourcesDiv.innerHTML = '<strong>Sources:</strong><br>';
-                    sources.forEach(source => {
-                        // Support both old string format and new object format
-                        const url     = (typeof source === 'string') ? source : source.url;
-                        const title   = (typeof source === 'string') ? null   : source.title;
-                        const section = (typeof source === 'string') ? null   : source.section;
-                        const score   = (typeof source === 'string') ? null   : source.score;
-
-                        const item = document.createElement('div');
-                        item.style.cssText = 'margin-bottom: 6px;';
-
+                    sourcesDiv.innerHTML = '<strong>Learn more:</strong><br>';
+                    sources.forEach(url => {
                         const a = document.createElement('a');
-                        a.href   = url;
-                        a.target = '_blank';
-                        a.textContent = title || url.replace('https://outerspace.stsci.edu/display/MASTDOCS/', '');
-
-                        item.appendChild(a);
-
-                        // Show breadcrumb section if present
-                        if (section) {
-                            const breadcrumb = document.createElement('span');
-                            breadcrumb.style.cssText = 'color: #666; font-size: 0.78rem; margin-left: 6px;';
-                            breadcrumb.textContent = section;
-                            item.appendChild(breadcrumb);
-                        }
-
-                        // Show relevance score badge if present
-                        if (score !== null && score !== undefined) {
-                            const badge = document.createElement('span');
-                            badge.style.cssText = 'color: #888; font-size: 0.75rem; margin-left: 8px;';
-                            badge.textContent = `score: ${score}`;
-                            item.appendChild(badge);
-                        }
-
-                        sourcesDiv.appendChild(item);
+                        a.href = url;
+                        a.target = "_blank";
+                        // Shorten URL for display
+                        let urlText = url.replace('https://outerspace.stsci.edu/spaces/MASTDOCS/', 'MASTDOCS/');
+                        a.textContent = urlText;
+                        sourcesDiv.appendChild(a);
                     });
                     msgDiv.appendChild(sourcesDiv);
                 }

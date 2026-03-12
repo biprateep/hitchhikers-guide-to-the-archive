@@ -4,35 +4,12 @@ import asyncio
 import pandas as pd
 import chromadb
 from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, StorageContext, Settings
-from llama_index.core.schema import Document, TextNode
+from llama_index.core.node_parser import SentenceSplitter
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.embeddings.gemini import GeminiEmbedding
 
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
 from google.api_core.exceptions import ResourceExhausted
-
-# Custom text chunking function that doesn't depend on NLTK
-def chunk_documents(documents, chunk_size=512, chunk_overlap=50):
-    """Simple character-based chunking without NLTK dependency."""
-    nodes = []
-    
-    for doc in documents:
-        text = doc.text
-        metadata = doc.metadata or {}
-        
-        # Simple character-based chunking
-        if len(text) <= chunk_size:
-            node = TextNode(text=text, metadata=metadata)
-            nodes.append(node)
-        else:
-            # Split into overlapping chunks
-            for i in range(0, len(text), chunk_size - chunk_overlap):
-                chunk_text = text[i:i + chunk_size]
-                if chunk_text.strip():
-                    node = TextNode(text=chunk_text, metadata=metadata)
-                    nodes.append(node)
-    
-    return nodes
 
 class RateLimitedGeminiEmbedding(GeminiEmbedding):
     @retry(wait=wait_exponential(multiplier=2, min=10, max=60), stop=stop_after_attempt(10), retry=retry_if_exception_type(ResourceExhausted))
@@ -98,7 +75,8 @@ def ingest_data(docs_dir="scraped_docs", persist_dir="./chroma_db"):
     print("Parsing, chunking, and embedding documents into ChromaDB. This may take a moment...")
     
     print("Parsing documents into nodes...")
-    nodes = chunk_documents(documents, chunk_size=512, chunk_overlap=50)
+    parser = SentenceSplitter(chunk_size=512, chunk_overlap=50)
+    nodes = parser.get_nodes_from_documents(documents)
     
     # Truncating nodes to maximum 60 due to Gemini free tier 15 RPM quota limitations
     nodes = nodes[:60]
