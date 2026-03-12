@@ -1,7 +1,4 @@
 import os
-if 'GOOGLE_API_KEY' not in os.environ:
-    os.environ['GOOGLE_API_KEY'] = 'dummy'
-import os
 import time
 import asyncio
 import pandas as pd
@@ -13,10 +10,6 @@ from llama_index.vector_stores.chroma import ChromaVectorStore
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
 
 from google.api_core.exceptions import ResourceExhausted
-
-import os
-if "GOOGLE_API_KEY" not in os.environ:
-    os.environ["GOOGLE_API_KEY"] = "dummy"
 
 
 class RateLimitedGoogleGenAIEmbedding(GoogleGenAIEmbedding):
@@ -33,10 +26,9 @@ class RateLimitedGoogleGenAIEmbedding(GoogleGenAIEmbedding):
         return await super()._aget_text_embeddings(texts)
 
 # Configure global settings
-
-import os
 from llama_index.core.embeddings import MockEmbedding
-if os.environ.get("GOOGLE_API_KEY") == "dummy":
+_use_mock = os.environ.get("USE_MOCK_EMBEDDING", "").lower() in ("1", "true", "yes")
+if _use_mock:
     Settings.embed_model = MockEmbedding(embed_dim=768)
 else:
     Settings.embed_model = RateLimitedGoogleGenAIEmbedding(
@@ -123,7 +115,7 @@ def ingest_data(docs_dir="scraped_docs", persist_dir="./chroma_db"):
     print("Ingestion complete! Vector store populated.")
 
 if __name__ == "__main__":
-    if "GOOGLE_API_KEY" not in os.environ:
+    if not _use_mock and "GOOGLE_API_KEY" not in os.environ:
         print("Error: GOOGLE_API_KEY environment variable is missing.")
     else:
         ingest_data()
