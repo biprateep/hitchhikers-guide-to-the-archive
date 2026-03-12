@@ -10,8 +10,6 @@ from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, StorageCon
 from llama_index.core.node_parser import SemanticSplitterNodeParser
 from llama_index.embeddings.google_genai import GoogleGenAIEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
-from llama_index.embeddings.google_genai import GoogleGenAIEmbedding
-
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
 
 from google.api_core.exceptions import ResourceExhausted
