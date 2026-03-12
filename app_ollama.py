@@ -151,7 +151,7 @@ def _debug_prompt(source_nodes: list, user_message: str) -> None:
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index_ollama.html")
 
 
 @app.route("/chat", methods=["POST"])
