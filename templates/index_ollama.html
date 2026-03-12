@@ -121,6 +121,24 @@
             text-decoration: underline;
         }
 
+        /* Logo in the corner */
+        .corner-logo {
+            position: fixed;
+            top: 20px;
+            left: calc((100vw - 900px)/2 - 180px);
+            height: clamp(100px, 8vw, 400px);
+            width: auto;
+            z-index: 1000;
+        }
+        /* for small screens */
+        @media (max-width: 1100px) {
+            .corner-logo {
+                height: 40;
+                top: 5px;
+                left: 5px;
+            }
+        }
+
         /* Input Area */
         .input-container {
             padding: 20px 24px 30px;
@@ -216,6 +234,7 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
+    <img src="{{ url_for('static', filename='images/logo.png')}}" alt="Logo" class="corner-logo" >
     <div class="app-container">
         <div class="header">MAST AI Assistant</div>
         
