@@ -45,7 +45,7 @@ print(f"Configuring Ollama embed: {OLLAMA_EMBED} @ {OLLAMA_BASE_URL}")
 Settings.llm = Ollama(
     model           = OLLAMA_LLM,
     base_url        = OLLAMA_BASE_URL,
-    temperature     = 0.7,
+    temperature     = 0.2,
     request_timeout = 120.0,   # local models can be slow; raise if needed
 )
 
